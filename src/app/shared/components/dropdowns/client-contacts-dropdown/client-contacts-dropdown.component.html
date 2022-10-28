@@ -1,0 +1,15 @@
+<select 
+  [disabled]="disabled" class="mt-0 custom-select form__dropdown" 
+  name="clientContactDropdown" 
+  [(ngModel)]="value" 
+  #clientContactControl="ngModel" 
+  [ngClass]="{ 'is-invalid': (submitted || clientContactControl.touched) && (value==0 || clientContactControl.invalid) }" required
+  >
+    <option [ngValue]="null">{{placeholderText}}</option>
+    <option *ngFor="let contact of clientContacts" [value]="contact.clientContactId" [disabled]="contact.isDeleted"> 
+      {{contact.clientContactName}}
+    </option>
+</select>
+<div class="invalid-feedback">
+  {{requiredMessage}}
+</div>

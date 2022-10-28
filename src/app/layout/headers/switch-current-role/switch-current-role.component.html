@@ -1,0 +1,17 @@
+<base-modal modalTitle="Switch Current Role" (onClose)="close()" class="upload__adv__comm">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group mt-0">
+                <select class="form-control custom-select form__dropdown" name="dropdown" [(ngModel)]="currentRole.roleId" (change)="selectedRole($event, currentRole.roleName)">
+                    <option *ngFor="let role of roleArr;" [value]="role.roleId">{{role.roleName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="modal-footer pl-0">
+                <button type="submit" class="btn btn-default btn__ui button__black"  (click)="switchRole()">Submit</button>
+                <button type="button" class="btn btn__ui button__white btn-default" (click)="close()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</base-modal>

@@ -1,0 +1,66 @@
+<div class="proforma__detail proforma__collapse">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <h1 class="col__tabletitle blue__gradient">Proforma Charges</h1>
+        </div>
+        <div class="col-xs-12 col-md-5 text-right">
+             <a (click) ="onBack()"
+             class="link__backward"><i class="fal fa-long-arrow-left"></i> Back </a>
+        </div>
+    </div>
+    <form #form="ngForm">
+        <div class="table__wrapper proforma__charges">
+            <div class="row">
+                <div class="col-12">                    
+                    <div class="row align-items-center filter__row">
+                        <div class="col-6"><p class="bold__text">Select charges to be deferred and save</p></div>
+                        <div class="col-6 text-right">
+                            <show-hide-grid-columns 
+                                *ngIf="hasColumnFilterPermission"
+                                [grid]="grid"
+                                [columnsList]="additionalColumnsList">
+                            </show-hide-grid-columns>
+                            <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#filterFieldModal" class="fa__filter">
+                                <i class="fal fa-filter"></i>
+                                <global-row-filter></global-row-filter>
+                                <span class="custom__tooltip">Filter
+                                    <span></span>
+                                </span>
+                            </a> -->
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-12">
+                            <common-grid-alt 
+                                [grid]="grid" 
+                                [columnsList]="columnsList" 
+                                orderBy="clientRegion" 
+                                [initialFirstPosition]="true"
+                                [headerCheckbox]="true" 
+                                [selectAllCheckbox]="checkedAll"
+                                [disableMasterCheckbox]="!canEdit || proformaChargesData?.length == 0"
+                                [hideTotalRows]="false"
+                                (checkAll)="toggleSelectionAll($event)"
+                                (changeTable)="filterGrid($event)">
+
+                                <ng-template let-data let-index="index">
+                                    <td>
+                                        <div class="custom-control custom-checkbox">  
+                                            <input type="checkbox" class="custom-control-input" [id]="data.proformaChargesId + index" [checked]="data.isDeferred" (click) ="toggleSelection(data, $event, index)" [disabled]="!canEdit">  
+                                            <label class="custom-control-label" [for]="data.proformaChargesId + index" ></label>  
+                                        </div>
+                                    </td>
+                                </ng-template>
+                           </common-grid-alt>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 btn__row text-right">
+                    <button type="button" [disabled]="!canEdit" class="btn btn__ui orange__gradient" (click) ="saveProformaCharges(this.checkedRowsData)">Save</button>
+                    <span > {{totalRows}} Charge rows</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

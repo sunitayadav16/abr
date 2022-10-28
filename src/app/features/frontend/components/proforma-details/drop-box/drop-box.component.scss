@@ -1,0 +1,78 @@
+@import '../../../../../../assets/scss/variables.scss';
+
+.upload__pdf {     
+    background-color: $white-color;
+    border: 1px dashed $border-color;
+    height: 76px;
+    padding-top: 25px;
+    font-family: "MaisonNeue-Light";
+    font-size: 17px;
+    color: $black-color;
+    position: relative;    
+    &:hover {
+        .choose__file {
+            text-decoration: underline;
+        }
+    }
+    .input__file {        
+        width: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        height: 76px;
+        cursor: pointer;
+    }
+    .custom__fileinput {
+        color: $black-color;
+        font-family: "MaisonNeue-Light";
+        padding:0;
+        margin: 0;
+        font-size: 17px;
+        color: $black-color;        
+        * {
+            pointer-events: none;
+        }
+    }
+}
+.progress__wrap {
+  margin-bottom: 20px;
+  .file__name {
+      font-size: $font-size-11 + 2;
+      font-family: MaisonNeue-Demi;
+      display: inline-block;
+      margin-bottom: 5px;
+      color: $table-text-color;
+      i {
+          font-size: 22px;
+          vertical-align: middle;
+          margin-right: 10px;
+      }
+      .filename__ellipsis {
+        max-width: 155px;
+        display: inline-block;
+        vertical-align: middle;
+        word-break: break-word;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+  }
+  .time__consumed {
+      font-size: $font-size-11 + 1;
+      float: right;
+      margin-top: 5px;
+      color: $table-text-color;
+      i {
+          font-size: $font-size-15 + 2;
+          vertical-align: middle;
+          margin-left: 6px;
+      }
+    .disabled{
+        pointer-events:none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+  }
+}

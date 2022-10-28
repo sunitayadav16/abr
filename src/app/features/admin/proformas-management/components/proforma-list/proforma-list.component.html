@@ -1,0 +1,36 @@
+<div class="proforma__detail">
+    <div class="row justify-content-between">
+        <div class="col-12">
+            <div class="tablehead__section">   
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <h1 class="col__tabletitle">Proforma List</h1>
+                    </div>
+                    <div class="col-6 text-right">
+                        <span>
+                            <a (click)="downloadFile()" href="javascript:void(0)"><i class="fal fa-file-download"></i> Download</a>
+                        </span>
+                        <span  *ngIf="isNewBatch" (click)="openDeleteConfirmationPopup()">
+                            <a href="javascript:void(0)"><i class="fal fa-trash-alt"></i> Delete</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table__wrapper">
+        <div class="row">
+            <div class="col-12">
+                <tabset #tabset>
+                    <tab heading="PROFORMA LIST">
+                        <proforma-list-tab [proformaBatchId]="proformaBatchId" (proformaBatchDetails)="proformaBatchdetails($event)"></proforma-list-tab>
+                    </tab>
+                    <tab heading="T2 HOURS" (selectTab)="changeTab($event)">
+                        <t2-hour-list-tab *ngIf="loadT2HourComponent" [proformaBatchId]="proformaBatchId" [proformaBatchDate]="proformaBatchDate"></t2-hour-list-tab>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+    </div>    
+    
+</div>

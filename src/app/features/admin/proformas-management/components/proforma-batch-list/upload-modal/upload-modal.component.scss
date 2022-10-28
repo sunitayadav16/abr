@@ -1,0 +1,63 @@
+@import 'src/assets/scss/variables';
+
+.upload__adv__comm {
+    .abr__form {
+        margin-bottom: 0;
+    }
+    .uploadproforma {
+        position: relative;
+        margin-top: 0;
+        #customButton {
+            cursor: pointer;
+            justify-content: center;
+            display: flex;
+            padding: 5px;
+            color: $white-color;
+        }
+        label {
+            font-family: MaisonNeue-Mono;
+            i {
+                margin-left: 15px;
+            }
+        }
+        input{
+            &.pdfInputFile{
+                width: 100%;
+                position: absolute;
+                height: 35px;
+                left: 0;
+                top: 0;
+                cursor: pointer;
+                font-size: 15px;
+                opacity: 0.0;
+            }
+        }
+        .custom__fileinput{
+            min-width: 185px;
+            &.light__grey{
+                background: $light-grey;
+            }
+        }
+    } 
+    .radio__btn{
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        .custom-control-input:checked ~ .custom-control-label::before {
+            color: #fff;
+            border-color: #000;
+            background-color: #000;
+        }
+    }
+    // .openAircheckbox{
+    //     display: flex;
+    //     justify-content: space-between;
+    //     h5{
+    //         font-family: MaisonNeueExtended-Bold;
+    //         font-size: 15px;
+    //     }
+    // }
+}
+
+
+

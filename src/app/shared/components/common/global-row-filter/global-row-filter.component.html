@@ -1,0 +1,18 @@
+<div class="btn-group filter__dropdown" dropdown #dropdown="bs-dropdown" [autoClose]="true" [insideClick]="true">
+  <i dropdownToggle class="fal fa-filter fa__filter" (click)="showDropdown()"></i> 
+  <ul *dropdownMenu class="dropdown-menu" role="menu" [ngClass]="showAndHideListClass">
+    <li role="menuitem" *ngFor="let item of filterNames | checkObjectKeyValue; let i=index">
+      <a class="dropdown-item d-flex" href="javascript:void(0)">
+        <div class="custom-control custom-checkbox">
+          <input #parentCheckbox type="checkbox" [checked]="checkIfFilterIsSelected(item.key)" class="custom-control-input" [id]="tabName+item.key">
+          <label class="custom-control-label" [for]="tabName+item.key">{{getEntityName(item.key)}}</label>
+        </div>
+      </a>
+      <single-filter-block class="nestedDropdown" [selectedFilters]="selectedRow" [show]="parentCheckbox.checked" [id]="tabName" [data]="data[item.value]" [key]="item.value" (selectedValues)="getselectedValue($event)">
+      </single-filter-block>
+    </li>
+    <div class="p-0 apply__filterbtn">
+      <button type="button" (click)="applyFilter(dropdown)" [disabled]="selectedRow?.length == 0" class="btn btn__ui button__black btn__link w-100">Apply Filter</button>
+    </div>
+  </ul>
+</div>

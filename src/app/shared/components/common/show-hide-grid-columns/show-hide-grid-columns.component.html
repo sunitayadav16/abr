@@ -1,0 +1,17 @@
+<div class="dropdown btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="true" [insideClick]="true">
+  <div class="float-end">
+    <button class="btn dropdown-toggle form__dropdown" dropdownToggle type="button" (click)="showDropdown()">
+      Show/Hide Columns
+    </button>
+    <ul *dropdownMenu class="dropdown-menu" role="menu" [class.show]="show" [class.d-none]="!show">
+      <li role="menuitem" *ngFor="let column of columnsList; let i = index" (click)="toggleVisiblity(column)">
+        <a class="dropdown-item" href="javascript:void(0)">
+          <div class="custom-control custom-checkbox">
+            <input readonly #checkbox type="checkbox" class="custom-control-input" [checked]="visibleColumns.includes(column.ColumnName)" />
+            <label class="custom-control-label" [for]="column.ColumnName">{{column.DisplayName}}</label>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+@import '../../../../../../assets/scss/variables.scss';
+
+.form-check{
+    align-items: center;
+    display: flex;
+}
+
+.role__management {
+    .table__wrapper {
+        tr {
+            &:hover {
+                background-color: none;
+            }
+             td:nth-child(even) {
+                background-color: $bgcolor-grey;
+            }
+            .custom-checkbox {
+                text-align: center;
+                padding: 0;
+                .custom-control-label {
+                    &:after, &:before {
+                        left: -0.5rem;
+                    }
+                }
+                .custom-control-input {
+                    left: 28px;
+                }
+            }
+            
+        }
+    }
+}
+
+.textCenter{
+    text-align:center;
+}

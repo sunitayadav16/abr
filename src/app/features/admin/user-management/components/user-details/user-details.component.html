@@ -1,0 +1,70 @@
+<base-modal [modalTitle]="userData.userId ? 'Update user' : 'Add new employee'" (onSave)="onSubmit()" (onClose)="close()">
+    <form class="abr__form form__style" name="form" #userForm="ngForm" (ngSubmit)="userForm.valid && onSubmit()" novalidate>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group mt-0">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" #nameControl="ngModel"
+                    [(ngModel)]="userData.name" [ngClass]="{ 'is-invalid': (userForm.submitted || nameControl.touched) && (nameControl.invalid || userData.name?.trim()=='') }" maxlength="50" required>
+                    <div *ngIf="(userForm.submitted || nameControl.touched ) && (nameControl.invalid || userData.name?.trim()=='')" class="invalid-feedback">
+                        <div *ngIf="nameControl.hasError('required') || userData.name?.trim()==''">Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-12">
+                <div class="form-group mt-0">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" #firstNameControl="ngModel" [(ngModel)]="userData.firstName" [ngClass]="{ 'is-invalid': (userForm.submitted || firstNameControl.touched) && firstNameControl.invalid }" maxlength="50" required>
+                    <div *ngIf="(userForm.submitted || firstNameControl.touched ) && firstNameControl.invalid" class="invalid-feedback">
+                        <div *ngIf="firstNameControl.hasError('required')">First name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="type" class="form-control" id="lastName" name="lastName" #lastNameControl="ngModel" [(ngModel)]="userData.lastName" [ngClass]="{ 'is-invalid': (userForm.submitted || lastNameControl.touched) && lastNameControl.invalid }" maxlength="50" required>
+                    <div *ngIf="(userForm.submitted || lastNameControl.touched) && lastNameControl.invalid" class="invalid-feedback">
+                        <div *ngIf="lastNameControl.hasError('required')">Last name is required</div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" #emailControl="ngModel" [(ngModel)]="userData.email" [ngClass]="{ 'is-invalid': (userForm.submitted || emailControl.touched) && emailControl.invalid }"  [pattern] ="emailValidations" required>
+                    <div *ngIf="(userForm.submitted || emailControl.touched) && emailControl.invalid" class="invalid-feedback">
+                        <div *ngIf="emailControl.hasError('required')">Email is required</div>
+                        <div *ngIf="emailControl.hasError('pattern')">Please enter valid email</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="role">Select Role</label>
+                    <ng-select class="pagination__length custom-select form__dropdown"
+                        name="roles"
+                        [multiple]="true"
+                        [items]="allUserRoles" 
+                        bindLabel="roleName" 
+                        bindValue="roleId" 
+                        [(ngModel)]="userData.userRoles" 
+                        #userRoleControl="ngModel"
+                        [class.increaseRoleHeight]="addClassForDropdown"
+                        [ngClass]="{ 'is-invalid': (userForm.submitted || userRoleControl.touched) && userRoleControl.invalid }" required>
+                    </ng-select>
+                    <div *ngIf="(userForm.submitted || userRoleControl.touched) && userRoleControl.invalid" class="invalid-feedback">
+                        <div *ngIf="userRoleControl.hasError('required')">User role is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="modal-footer pl-0">
+                    <button type="submit" [disabled]="disableOnFirstClick" class="btn btn-default btn__ui button__black">Submit</button>
+                    <button type="button" class="btn btn__ui button__white btn-default" (click)="close()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</base-modal>
+<modal-loader [showSpinner]="loader"></modal-loader>

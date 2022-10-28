@@ -1,0 +1,80 @@
+@import '../../../../../../assets/scss/variables.scss';
+
+.col__form{
+    .form-group{
+        .form__dropdown{
+            border: 1px solid $border-color;
+            width: 250px;
+        }
+    }
+}
+.uploadproforma{
+    position: relative;
+    #customButton{
+        cursor: pointer;
+        justify-content: center;
+        display: flex;
+        padding: 5px;
+        color: $white-color;
+    }
+    
+    input{
+        &.pdfInputFile{
+            width: 100%;
+            position: absolute;
+            height: 35px;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+            font-size: 15px;
+            opacity: 0.0;
+        }
+    }
+    .custom__fileinput {
+        min-width: 185px;
+        &.light__grey{
+            background: $light-grey;
+        }
+    }
+}
+
+   
+@media (min-width: 992px) { 
+    .col__selectmonth {
+        width: 746px;
+        max-width: 746px;
+        .col__title {
+          width: 266px;
+          max-width: 266px;
+        }
+        .col__form {
+          width: 480px;
+          max-width: 480px;
+          margin-left: 266px;
+          padding: 15px 18px 35px 42px;
+        }
+    }
+    .col__upload .col__form {
+        width: 480px;
+        max-width: 480px;
+        margin-left: 266px;
+        padding: 15px 18px 35px 42px;
+    }
+    .col__upload {
+        width: 678px;
+        max-width: 678px;
+        .col__title {
+            width: 198px;
+            max-width: 198px;
+        }
+        .col__form {
+            margin-left: 198px;
+        }
+    }
+    .fileupload__wrap {
+        padding-right: 19px;
+        .fal {
+          margin-left: 15px;
+        }
+      }
+}

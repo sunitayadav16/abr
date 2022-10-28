@@ -1,0 +1,34 @@
+<div class="proforma__detail role__management">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            <h1 class="col__tabletitle">Role Management</h1>
+        </div>
+        <div class="col-4 text-right">
+            <button type="button" class="btn btn__ui button__black btn__link" (click)="savePermissions()">Save Permissions</button>
+        </div>
+    </div>
+    <div class="table__wrapper">
+        <div class="row">
+            <div class="col-12">
+                <common-grid tableClass="roleHeadingAlignment" [columnsList]="columnsList" (searchValue) ="searchData($event)">
+                    <tr *ngFor="let role of filteredPermissionList; let i = index;">
+                        <td scope="col">{{role.roleName}}</td>
+                        <td scope="col" *ngFor="let permission of allRolepermissions; let j = index">
+                          <div class="custom-control custom-checkbox"> 
+                              <input #checkbox type="checkbox" class="custom-control-input"  id="check_{{i}}_{{j}}" 
+                              [checked]="checkRole(permission.permissionId, role.listRolePermissions, i)"
+                               (change)="toggleSelection(role.roleId, permission.permissionId, role.listRolePermissions, checkbox, i)">
+                              <label class="custom-control-label" for="check_{{i}}_{{j}}" >
+                                  <span class="sr-only">Never</span>
+                              </label>
+                          </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="(!filteredPermissionList || filteredPermissionList.length == 0)">
+                        <td colspan="9" class="text-center p-3">No data found.</td>
+                    </tr>
+                </common-grid>
+            </div>
+        </div>
+    </div>
+</div>

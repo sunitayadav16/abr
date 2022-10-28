@@ -1,0 +1,28 @@
+.invalid{
+    color: rgb(214, 39, 39);
+}
+::ng-deep {
+    .ng-select-container{
+        margin-top: 0;
+    }
+    bs-datepicker-container{
+        z-index: 1111;
+        width: auto !important;
+        .days{
+            td{
+                .selected{
+                    padding: 5px 8px;
+                    background-color: #000;
+                    color: #fff;
+                    border-radius: 100%; 
+                }
+                .disabled{
+                    color: #ccc !important;
+                }
+                .is-other-month{
+                    color: #ccc !important;
+                }
+            }
+        }
+    }
+}

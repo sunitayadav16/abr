@@ -1,0 +1,38 @@
+<div class="cdkDrag" cdkDropListGroup>
+    <div class="cdkDrag-container available__userswrap">
+        <div class="mimic__search">
+            <h4 class="mb-0">Available Users</h4>
+            <div class="dataTables_filter">
+                <input #search type="search" class="form-control input-md" placeholder="Search user" (input)="searchBounce.next(search.value)" />
+                <button type="button" class="btn search__icon"><i class="far fa-search"></i></button>
+            </div>
+        </div>
+        <div
+            cdkDropList
+            [cdkDropListData]="allUserLists"
+            class="user-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="drag-box" *ngFor="let user of allUserLists" cdkDrag><i class="fal fa-bars"></i> {{user.name}}</div>
+        </div>
+    </div>          
+    <div class="cdkDrag-container selected__userswrap">
+        <div class="mimic__search">
+            <h4 class="mb-0">Selected Users</h4>
+            <div class="dataTables_filter d-flex"  >
+                <button type ="button" class="btn btn-default btn__ui button__black"
+                 (click) ="removeAllProxyUser()" [disabled] ="proxyUserList.length == 0" > Remove all </button>
+            </div>
+        </div>
+        <div
+            cdkDropList
+            [cdkDropListData]="proxyUserList"
+            class="user-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="drag-box" *ngFor="let user of proxyUserList" cdkDrag><i class="fal fa-bars"></i> {{user.name}}</div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer pl-0">
+    <button type="submit" class="btn btn-default btn__ui button__black" [disabled]="hasProxyUserChanges" (click)="saveProxyUser()">Submit</button>
+    <button type="button" class="btn btn__ui button__white btn-default" (click)="close()" [hidden]="!userManagement">Cancel</button>
+</div>

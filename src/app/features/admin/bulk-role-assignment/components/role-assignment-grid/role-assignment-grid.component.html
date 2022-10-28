@@ -1,0 +1,31 @@
+<div class="proforma__detail role__management">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            <h1 class="col__tabletitle">Bulk Role Assignment</h1>
+        </div>
+        <div class="col-4 text-right">
+            <button type="button" class="btn btn__ui button__black btn__link" (click)="saveRole()">Save roles</button>
+        </div>
+    </div>
+    <div class="table__wrapper">
+        <div class="row">
+            <div class="col-12">
+                <common-grid tableClass="roleHeadingAlignment" [columnsList]="columnsList" (changeTable)="filterGrid($event)">
+                    <tr *ngFor="let user of usersList; let i = index;">
+                        <td scope="col">{{user.name}}</td>
+                        <td scope="col" class ="textCenter">{{user.employeeId}}</td>
+
+                        <td scope="col" *ngFor="let role of allUserRoles; let j = index">
+                            <div class="custom-control custom-checkbox">
+                                <input #checkbox type="checkbox" class="custom-control-input" id="check_{{i}}_{{j}}" [checked]="chekRole(user.userId, role.roleId, user.roleNameList)" (change)="toggleUserRoles(user, role.roleId, checkbox)">
+                                <label class="custom-control-label" for="check_{{i}}_{{j}}">
+                                    <span class="sr-only">Never</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                </common-grid>
+            </div>
+        </div>
+    </div>
+</div>

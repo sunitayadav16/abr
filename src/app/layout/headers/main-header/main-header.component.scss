@@ -1,0 +1,211 @@
+@import '../../../../assets/scss/variables.scss';
+
+.navbar-expand .navbar-collapse {
+  justify-content: flex-end;
+  margin-right: 50px;
+}
+
+.navbar__wrap {
+  padding-top:0;
+  padding-bottom: 0;
+  min-height: 71px;
+  .navbar-toggler {
+    color: $black-color;
+    border-color: $black-color;
+  }
+  .mob__menutoggler ~ .menu__dropdownicon {
+    display: block;
+  }
+}
+.menu__dropdownicon {
+  .nav-item {
+    padding: 26px 15px 21px;
+    i {
+      font-size: $font-size-11;
+      margin-left: 2px;
+    }
+    .nav-link {
+      padding: 0;
+      font-size: $font-size-14;
+      font-family: MaisonNeueExtended-Bold;
+      text-transform: uppercase;   
+      color: $table-text-color;
+      white-space: pre-line;
+    }
+    .dropdown-menu {
+      border: 1px solid $menu-border-color;
+      border-radius: 0;
+      margin-top: 21px;
+      left: -15px !important;
+      padding: 28px;      
+      > li {
+        margin-bottom: 6px;
+        &.sub-menu-item {
+          a {
+            &.active, &:hover {
+              background-color: transparent;  
+              color: $table-text-color;
+            }
+            &.active {
+              font-family: MaisonNeueExtended-Bold;
+            }
+          }
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .dropdown-item {
+        font-size: $font-size-14;
+        padding: 0;
+        color: $table-text-color;
+        i {
+          font-size: $font-size-11 + 2;
+          margin-left: 7px;
+        }
+        &:hover, &:focus {
+          background-color: transparent;
+        }
+      }
+      &.show{
+        display: block !important;
+      }
+    }
+    &.active {
+      background-color: $black-color;
+      .nav-link {
+        color: $white-color;     
+      }
+    }
+    .btn-group, .btn-group-vertical {
+      vertical-align: top;
+    }
+  } 
+}
+
+.custom__dropdown{
+  position: relative;
+  padding: 33px 15px 32px;
+  .fa-arrow-down{
+    font-size: $font-size-11;
+    margin-left: 2px;
+  }
+  ul{
+    .sub-menu-item{
+      font-size: $font-size-14;
+      color: $table-text-color;
+    }
+    &.show{
+      border-radius: 0;
+      margin-top: 0px;
+      padding: 28px;
+    }
+  }
+  &.active{
+    background: #000;
+    .menu-item{
+      color: #fff !important;
+    }
+  }
+  &.profile{  
+    .menu-item{
+      font-size: $font-size-14;
+      font-family: MaisonNeueExtended-Bold;
+      white-space: pre;
+    }
+    .show{
+      width: 213px;
+      left: initial !important;
+      right: 0 !important;
+    }
+    a{
+      &.active {
+        background-color: transparent;  
+        color: $table-text-color;
+        font-family: MaisonNeueExtended-Bold;
+      }
+    }
+  }
+}
+.mimicingUser{
+  font-size: $font-size-14;
+  font-family: MaisonNeueExtended-Bold;
+}
+@media (max-width: 1349px) and (min-width: 1200px)  {
+  .menu__dropdownicon {
+    .nav-item {
+      padding: 26px 8px 21px;
+      .nav-link {
+        font-size: 12px;
+      }
+      .dropdown-menu {
+        left: -8px !important;
+      }
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .menu__dropdownicon {
+    .nav-item {
+      > .btn-group {
+        display: flex;
+        align-items: center;
+        height: 42px;
+      }
+    }
+  }
+}
+@media (min-width: 1450px) {
+  .menu__dropdownicon {
+    width: 896px;
+    .nav-item {
+      padding: 26px 15px 21px;
+      .dropdown-menu {
+        margin-top: 21px;
+        left: -15px !important;
+      }
+    }
+  }
+}
+@media (max-width: 1199.98px) {
+  .main__wrapper {
+    margin-top: 100px;
+  }
+  .navbar__wrap {
+    min-height: auto;
+  }
+  .menu__dropdownicon {
+    padding: 0 !important;
+    .nav-item {
+      padding: 10px;
+      .nav-link {        
+        font-size: 12px;
+      }
+      .dropdown-menu {
+        padding: 10px 15px;
+        margin-top: 10px;
+      }
+      > .btn-group {
+        display: block;
+      }
+    }   
+  }
+  .custom__dropdown{
+    padding: 10px;
+    display: block;
+    width: 100%;
+    .dropdown-menu {
+      padding: 10px 15px !important;
+      position: static !important;
+      float: unset;
+    }
+    &.profile {
+      .show {
+        width: 100%;
+      }
+    }
+  } 
+  .cross__icon {
+    padding: 0 .118rem;
+  }
+}

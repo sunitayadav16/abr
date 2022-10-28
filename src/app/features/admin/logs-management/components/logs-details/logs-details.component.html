@@ -1,0 +1,95 @@
+<div class="proforma__detail proforma__collapse">
+  <form #logsForm="ngForm">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-auto">
+        <h1 class="col__tabletitle">{{labelName}}</h1>
+      </div>
+    </div>
+
+    <div class="table__wrapper proforma__charges">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-xs-12 mt-0 searchClass" [class.d-content]="taskId" [ngClass]="logType == 'proforma-inline-log' ? 'col-md-12' : 'col-md-3'">
+              <div class="d-flex select_wrapper1">
+                <ng-select 
+                  class="w-100 pagination__length custom-select form__dropdown"
+                  name="commonSelect"
+                  placeholder="Select value"
+                  (change)="changeDropdown($event)"
+                  (input)="searchBounce.next($event)"
+                  [items]="listData" [bindLabel]="bindLable" [bindValue]="bindValue"
+                  [(ngModel)]="mainId"
+                  #userNameControl="ngModel" required>
+                </ng-select>
+  
+                <ng-select *ngIf="logType =='proforma-inline-log'"
+                  class="w-100 pagination__length custom-select form__dropdown"
+                  name="projects"
+                  placeholder="Select project"
+                  (change)="onSelectingProjects($event)"
+                  (input)="searchBounce.next($event)"
+                  [items]="projectListData" bindLabel="name" bindValue="id"
+                  [(ngModel)]="projectId"
+                  #userNameControl="ngModel" required>
+                </ng-select>
+  
+                <ng-select *ngIf="logType =='proforma-inline-log'"
+                  class="w-100 pagination__length custom-select form__dropdown"
+                  name="users"
+                  placeholder="Select service"
+                  (change)="onSelectingServices($event)"
+                  (input)="searchBounce.next($event)"
+                  [items]="serviceItemListData" bindLabel="name"
+                  bindValue="id" [(ngModel)]="serviceId"
+                  #userNameControl="ngModel" required>
+                </ng-select>
+  
+                <ng-select *ngIf="logType =='proforma-inline-log'"
+                  class="w-100 pagination__length custom-select form__dropdown"
+                  name="users"
+                  placeholder="Select task" (change)="onSelectingTasks($event)"
+                  (input)="searchBounce.next($event)"
+                  [items]="taskListData" bindLabel="name"
+                  bindValue="id" [(ngModel)]="taskId"
+                  #userNameControl="ngModel" required>
+                </ng-select>
+              </div>
+            </div>
+          </div>
+          <div [class.marginTop] ="logTypeValue == proformaInlineLogColumnList">
+            <common-grid-alt *ngIf="showGrid()" [initialFirstPosition]="false"
+              [isLogMode]="isLogMode"
+              [hideGridSearch]="true" [columnsList]="logTypeValue" 
+              (changeTable)="filterGrid($event)">
+
+              <ng-template let-data let-index="index">
+
+                <!-- <td *ngIf="logTypeValue == userLogsColumnsList" [class.highlight]="highlightCell('status', index)" class="instructionsWrapper">{{data.isActive ? 'Active' : 'Inactive' }}</td> -->
+
+                <div  class ="instructionsWrapper" *ngIf="logTypeValue == proformaBatchLogsColumnsList">
+                  <td class= "instructionsClass">
+                    <span *ngIf="data.showMore">{{data?.instructions |
+                      slice:0:15}}
+                      <span *ngIf="(data?.instructions)" class="text-decoration: none">...</span>
+                      <a (click)="showMoreModal(data.instructions)" *ngIf="(data?.instructions)"
+                        class="showMore">
+                        [View More]</a> </span>
+                    <span *ngIf="!data.showMore" [innerHTML]="data?.instructions
+                      | urlify"></span>
+                  </td>
+                </div>
+              </ng-template>
+            </common-grid-alt>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="!showGrid()" class="proforma__detail available__proforma">
+  <div class="table__wrapper notificationMessage">
+    Please select values from dropdown list.
+  </div>
+</div>

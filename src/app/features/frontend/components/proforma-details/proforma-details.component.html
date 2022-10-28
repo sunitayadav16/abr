@@ -1,0 +1,274 @@
+<div class="proforma__detail proforma__collapse">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            <h1 class="col__tabletitle blue__gradient">Proforma Details</h1>
+        </div>
+        <div class="col-xs-12 col-md-5 text-right">
+            <a routerLink="/home" class="link__backward"><i class="fal fa-long-arrow-left"></i> Back to main list</a>
+        </div>
+    </div>
+
+    <form #form="ngForm">
+        <div class="row">
+            <div class="col">
+                <div class="note__section collapse__wrap">
+                    <div class="row ">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Proforma #</th>
+                                            <th scope="col">Client</th>
+                                            <th scope="col">Client owner</th>
+                                            <!-- <th scope="col">Client region</th> -->
+                                            <!-- <th scope="col">Client market</th> -->
+                                            <th scope="col">Project manager</th>
+                                            <th scope="col">Billing manager</th>
+                                            <th scope="col">Proforma total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{proformaDetails?.proformaNo}}</td>
+                                            <td>{{proformaDetails?.clientName}}</td>
+                                            <td>{{proformaDetails?.clientOwner}}</td>
+                                            <!-- <td>{{proformaDetails?.clientRegion}}</td> -->
+                                            <!-- <td>{{proformaDetails?.clientMarket}}</td> -->
+                                            <td>{{proformaDetails?.proformaManagers.projectManager}}</td>
+                                            <td>{{proformaDetails?.proformaManagers.billingManager}}</td>
+                                            <!-- <td>John Doe</td> -->
+                                            <td>
+                                                {{proformaDetails?.proformaTotal.proformaTotal | amount : currency}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-none" [ngClass]="showMoreDetails ? 'showDetails': ''">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Instructions
+                                                <!-- <span class="hover__editIcon float-right d-none">
+                                                    <a href="javascript:void(0)">
+                                                        <i *ngIf="!editInstruction" class="far fa-pencil-alt edit__field" (click)="editInstruction = true"></i>
+                                                        <i *ngIf="editInstruction" class="fal fa-times-circle" (click)="editInstruction = false"></i>
+                                                    </a>                                                         
+                                                </span> -->
+                                            </th>
+                                            <th scope="col">Proforma notes</th>
+                                            <th scope="col">Internal notes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table__width">
+                                        <tr>
+                                            
+                                            <td>
+                                                <span *ngIf="showMoreInstructions">{{proformaDetails?.instructions | slice:0:100}}...<a (click)="showMoreModal()" class ="showMore">[View More]</a> </span>
+                                                <span *ngIf="!showMoreInstructions" [innerHTML]="proformaDetails?.instructions | urlify"></span>
+                                                
+                                            </td>
+                                            <td><textarea
+                                                    [disabled]="isStatusSubmitted"
+                                                    name="proformaNotes" id="proformaNotes" cols="45" rows="3"
+                                                    [(ngModel)]="proformaNotes"></textarea></td>
+                                            <td><textarea
+                                                    [disabled]="isStatusSubmitted"
+                                                    name="internalNotes" id="internalNotes" cols="45" rows="3"
+                                                    [(ngModel)]="internalNotes"></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-none" [ngClass]="showMoreDetails ? 'showDetails': ''">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Proforma layout</th>
+                                            <th scope="col">Collection contacts</th>
+                                            <th scope="col">Billed total</th>
+                                            <th scope="col">Write up/down total</th>
+                                            <th scope="col">Write up/down %</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="proforma_layout">
+                                        <tr>
+                                            <td>
+                                                
+                                                <global-category-dropdown *ngIf="loader"
+                                                    [val]="proformaDetails.proformaLayoutId"
+                                                    [globalCodeId]="proformaDetails.proformaLayoutId"
+                                                    [requestBody]="proformaLayoutRequest"
+                                                    placeholderText="Select Layout"
+                                                    [disabled]="isStatusSubmitted"
+                                                    (dropdownSelectedValue)="selectedLayout($event)"
+                                                    requiredMessage="Proforma layout is required."
+                                                    placeholderText="Select layout"
+                                                    [hasRequired]="true" 
+                                                    [submitted]="form.submitted">
+                                                </global-category-dropdown>
+                                            </td>
+                                            <td>
+                                                <client-contacts-dropdown *ngIf="loader"
+                                                    [val]="proformaDetails.collectionsContactId"
+                                                    [selectedClientId]="proformaDetails.collectionsContactId"
+                                                    [clientId]="clientId"
+                                                    placeholderText="Select category"
+                                                    [disabled]="isStatusSubmitted"
+                                                    (dropdownSelectedValue)="selectedContact($event)"
+                                                    requiredMessage="Collection contact is required."
+                                                    [hasRequired]="true" 
+                                                    [submitted]="form.submitted">
+                                                </client-contacts-dropdown>
+                                            </td>
+                                            <td>
+                                              {{proformaDetails?.billTotal | amount : currency}}
+                                            </td>
+                                            <td>
+                                                {{proformaDetails?.writeUpDownTotal | amount : currency}}
+                                            </td>
+                                            <td>{{proformaDetails?.writeUpDownPercentage}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row d-none" [ngClass]="showMoreDetails ? 'showDetails': ''">
+                        <div class="col-12 radio__buttons d-flex">
+                            <div class="form-check mr-3 mt-3 d-flex custom-control form-control-lg custom-checkbox">
+                                <input type="radio" class="custom-control-input" id="proformaReviewByAMT" name="radio-buttons">
+                                <label class="custom-control-label" for="proformaReviewByAMT">Proforma review by AMT</label>
+                            </div>
+                            <div class="form-check mr-3 mt-3 d-flex custom-control form-control-lg custom-checkbox">
+                                <input type="radio" class="custom-control-input" id="proformaReviewByRSU" name="radio-buttons">
+                                <label class="custom-control-label" for="proformaReviewByRSU">Proforma review by RSU</label>
+                            </div>
+                            <div class="form-check mr-3 mt-3 d-flex custom-control form-control-lg custom-checkbox">
+                                <input type="radio" class="custom-control-input" id="proformaSubmittedByGOT" name="radio-buttons">
+                                <label class="custom-control-label" for="proformaSubmittedByGOT">Proforma can be submitted by GOT</label>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row d-none" [ngClass]="showMoreDetails ? 'showDetails': ''">
+                        <div class="col-12 file__drag">
+                            <p>File upload</p>
+                        </div>
+                        <div class="col-12">
+                            <drop-box [files]="proformaDetails?.documentList"
+                                [disabled]="isStatusSubmitted"
+                                [proformaId]="proformaId">
+                            </drop-box>
+                        </div>
+                    </div>
+                    <div class="row d-none" [ngClass]="showMoreDetails ? 'showDetails': ''">
+                        <div class="col-12">
+                            <div class="collapse__buttons">
+                                <button class="btn btn__ui orange__gradient"
+                                    [disabled]="checkPermissionForAction('New')"
+                                    (click)="saveUpdates()">
+                                    Save updates
+                                </button>
+                                <button class="btn btn__ui orange__gradient tooltip__hover"
+                                    [disabled]="checkPermissionForAction('Submitted')"
+                                    (click)="openAdditionalNotesPopup('Submit')">
+                                    {{ !isStatusSubmitted ? 'Submit ABR' : 'Submitted' }}
+                                    <span class="custom__tooltip" [hidden]="checkPermissionForAction('Submitted')">ABR is ready to be submitted
+                                        to Global Ops
+                                        <span></span>
+                                    </span>
+                                </button>
+                                <button
+                                    [disabled]="checkPermissionForAction('Pending')"
+                                    class="btn btn__ui button__white"
+                                    (click)="openAdditionalNotesPopup('Pending by GOT')">
+                                    Pending by GOT
+                                </button>
+                                <button [disabled]="checkPermissionForAction('Processed')"
+                                    class="btn btn__ui button__white"
+                                    (click)="openAdditionalNotesPopup('Processed by GOT')">
+                                    Processed by GOT
+                                </button>
+                                <button [disabled]="checkPermissionForAction('Rejected')"
+                                    class="btn btn__ui button__white"
+                                    (click)="openAdditionalNotesPopup('Rejected by GOT')">
+                                    Rejected by GOT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="btn float-right collapse__link">
+                                <span *ngIf="showMoreDetails" (click)="showMoreToggle()">Show less <i
+                                        class="fas fa-minus pl-4"></i></span>
+                                <span *ngIf="!showMoreDetails" (click)="showMoreToggle()">Show more <i
+                                        class="fas fa-plus pl-4"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="table__wrapper">
+        <div class="row align-items-center filter__row filter__row__title">
+            <div class="col-lg-6">Hover over any row to expand view/access form</div>
+            <div class="col-lg-6 text-right">
+                <show-hide-grid-columns *ngIf="hasColumnFilterPermission" [grid]="grid" [columnsList]="additionalColumnsList">
+                </show-hide-grid-columns>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 proforma__rows">
+                <common-grid-alt [grid]="grid" [columnsList]="columnsList" (searchValue) ="searchData($event)" [hidePageNumbers]="true"
+                    [orderBy]="orderByColumnName" (cellLevelDetails)="updateCell($event)" [initialFirstPosition]="false"
+                    (showHover)="showHover = $event" [hovered]="showHover">
+
+                    
+                    <ng-template let-data>
+                        <td class="d-none" (mouseleave)="showHover = false" [class.hovered__element]="showHover" >
+                            <div class="sticky__pos">
+                                <a href="javascript:void(0)" (click)="openProformaLineDetails(data)"
+                                    >
+                                    <button class="btn btn__ui button__white ref__btn">
+                                        <i class="far fa-file-spreadsheet"></i>
+                                        Proforma line details</button>
+                                </a>
+
+                                <a href="javascript:void(0)" (click)="openProformaFullDetails(data)" >
+                                    <button class="btn btn__ui button__white ref__btn">
+                                        <i class="far fa-file-spreadsheet"></i>
+                                        Full proforma details</button>
+                                </a>
+
+                                <a href="javascript:void(0)" (click)="openT2HoursDetails(data)"
+                                    >
+                                    <button class="btn btn__ui button__white ref__btn"><i
+                                            class="far fa-hourglass-start"></i> T2
+                                        hours details</button>
+                                </a>
+
+                                <a href="javascript:void(0)" (click)="openMakeAdujustment(data)">
+                                    <button class="btn btn__ui button__white ref__btn"><i
+                                            class="far fa-hourglass-start"></i>Make
+                                        adjustments</button>
+                                </a>
+                            </div>
+                        </td>
+                    </ng-template>
+                </common-grid-alt>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+
+@import 'src/assets/scss/variables';
+
+.proforma__list {  
+    span.status {
+        min-width: 122px;
+        display: inline-block;
+        text-align: left;
+    }
+    a {
+      font-size: $font-size-15;
+        i {
+            &.fal {
+                font-size: $font-size-15 + 6;
+                vertical-align: text-bottom;
+                margin-right: 5px;
+            }
+        }
+        &.disabled{
+            pointer-events:none;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+    p {
+        font-size: $font-size-15 + 3;
+        font-family: MaisonNeue-Medium;
+        padding: 16px 29px;
+    }
+    .table__wrapper {
+        padding-bottom: 80px;
+        #batchProformaList {
+            .batch__status {
+                font-family: MaisonNeueExtended-Bold;
+                font-size: $font-size-15;
+            }
+            tr {
+                &:first-child {
+                    td {
+                        border-top: 1px solid $table-border-color;
+                    }
+                }
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+            tr:nth-child(odd) {
+                background-color: $striped-grey;
+            }
+        }
+        .dropdownEllipse{
+            .dropdown-menu{
+                position: relative;
+                padding: 10px 10px;
+                left: 78% !important;
+                top: 20px !important;
+            }
+        }
+    }
+}

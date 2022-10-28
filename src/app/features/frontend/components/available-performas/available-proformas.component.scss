@@ -1,0 +1,277 @@
+@import 'src/assets/scss/variables';
+
+.btn__popover {
+    text-align: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 13px;
+    border: 0;
+    padding: 2px 3px;
+    margin-left: 10px;
+    background: $blue-gradient;
+    font-family: "MaisonNeue-Medium";
+    color: $white-color;
+    position: relative;
+    z-index: auto !important;
+    &.close__popover {
+        background: $black-color;
+        padding: 2px;
+        &:before {
+            content: "\f00d";
+            font-family: 'Font Awesome 5 Pro';
+        }
+        > .project__count {
+            display: none;
+        }
+        &:hover {        
+            .custom__tooltip {
+                display: none;
+            }
+        }
+    }   
+    .custom__tooltip {
+        min-height: 42px;
+        display: none;
+    }
+    &:hover, &:focus {
+        color: $white-color;
+    }
+    &:hover {        
+        .custom__tooltip {
+            display: block;
+        }
+    }
+}
+.popover {
+    background: $bgcolor-grey;
+    border: 1px solid $table-border-color;
+    border-radius: 0;
+    &.left {
+        .arrow {
+            &:after {
+                border-left-color: $table-border-color;
+            }
+        }
+    }
+}
+
+.notificationMessage{
+    font-size: 30px;
+    color: #bbb;
+    height: calc(100vh - 300px);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hovered__element {
+    a {
+        font-family: MaisonNeue-Demi;
+        line-height: 38px;
+        i {
+            font-size: $font-size-15 + 1;
+        }
+    }
+}
+.proforma__detail .table__wrapper {
+    ::ng-deep{
+        .table{
+            .proforma__rows{
+                tr {
+                &:hover {
+                    background: none;
+                }
+                &.goto__proforma {
+                    position: relative;
+                    &:hover {
+                    td {
+                        &.hovered__element {
+                        background: $hovered-row-color;
+                        display: block !important;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border: 0;
+                        }
+                        .btn__popover {
+                            background: #ccc !important;
+                        }
+                    }
+                    }
+                }
+                td {
+                    &:first-child {
+                        .pop__tooltip {
+                            font-family: MaisonNeue-Demi;
+                            padding:0;
+                            font-size: $font-size-14;
+                            border: none;
+                        } 
+                            &.status__new {
+                                .pop__tooltip {
+                                    color: $status-color-new;
+                                }            
+                            }
+                            &.status__working {
+                                .pop__tooltip {
+                                    color: $status-color-working;
+                                }
+                            }
+                            &.status__submitted {
+                                .pop__tooltip {
+                                    color: $status-color-submitted;
+                                }                
+                            }
+                            &.status__pending {
+                                .pop__tooltip {
+                                    color: $status-color-pending;
+                                }
+                            }
+                            &.status__processed {
+                                .pop__tooltip {
+                                    color: $status-color-processed;
+                                }
+                            }
+                            &.status__open {
+                                .pop__tooltip {
+                                    color: $status-color-open;
+                                }
+                            }
+                            &.status__rejected {
+                                .pop__tooltip {
+                                    color: $status-color-rejected;
+                                }
+                            }
+                            &.status__approved {
+                                .pop__tooltip {
+                                    color: $status-color-approved;
+                                }
+                            }
+                        }
+                    }
+                }                
+            }
+        }
+    }
+}
+.note__section {
+    background-color: $bgcolor-grey;
+    padding: 15px 40px;
+    margin-bottom: 4px;
+}
+
+.clear__filterBtn{
+    cursor: pointer;
+    opacity: 0;
+    &.show{
+        opacity: 1 !important;
+    }
+    .applied__filter__dot{
+        background: #1488E8;
+        font-size: 3px;
+        padding: 4px 4px;
+        border-radius: 100%;
+        position: absolute;
+        top: 3px;
+        right: 10px;
+        z-index: 1;
+    }
+}
+
+
+.table__wrapper {
+    .table-responsive {
+      .table{
+        tbody{
+            tr{
+             position: relative;
+              &:hover{
+                td {
+                    &.hovered__element{
+                        background: rgba(240,239,239,.9);
+                        display: block !important;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border: 0;
+                    }
+                 }                
+              }
+            }
+        }
+      }
+    }
+  } 
+
+
+  ::ng-deep {
+    .show__projects{
+        .tooltip-inner {
+            background: $bgcolor-grey !important;
+            color: $table-text-color;
+            padding: 25px;
+            text-align: left;
+            border: 1px solid $table-border-color;
+            min-width: 440px;
+            max-height: 200px;
+            overflow: auto;
+            box-shadow: 0px 3px 6px #0000001A;
+            border-radius: 0;
+            pointer-events: visible;
+            ul {
+                margin: 0;
+                padding: 0;
+                li{
+                    list-style-type: none;
+                    border-bottom: 1px solid $table-border-color;
+                    padding: 5px;
+                    font-size: $font-size-14;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+        &.tooltip.bs-tooltip-auto[x-placement^=auto] .arrow::before {
+        border-top-color: $table-border-color;
+        }
+        &.tooltip.bs-tooltip-top .arrow::before {
+            border-top-color: $table-border-color;
+            }
+        &.tooltip.bs-tooltip-bottom .arrow::before {
+        border-bottom-color: $table-border-color;
+        }
+        &.tooltip.bs-tooltip-left .arrow::before {
+        border-left-color: $table-border-color;
+        }
+        &.tooltip.bs-tooltip-right .arrow::before {
+        border-right-color: $table-border-color;
+        }
+        &.show{
+            opacity: 1 !important;
+        }
+    }
+    
+  }
+
+  .bold__text {
+      + i {
+          margin-left: 10px;
+      }
+  }
+
+  .originalAbr {
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+    color: blue;
+    margin-top: 0.5rem;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }

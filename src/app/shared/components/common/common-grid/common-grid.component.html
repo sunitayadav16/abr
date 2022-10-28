@@ -1,0 +1,90 @@
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="proforma" role="tabpanel" aria-labelledby="proforma-tab">
+        <div class="row align-items-center filter__row">
+            <div class="col-6">
+              <div class="dataTables_filter" [class.d-none]="hideGridSearch">
+                <label>
+                  <input type="search" class="form-control input-md" placeholder="Search" [(ngModel)]="searchObject.Search" (ngModelChange)="searchBounce.next($event)" />
+                </label>
+              </div>
+            </div>
+            <div class="col-6 text-right" *ngIf ="this.paginationObject.TotalPage > 0">
+              <div class="dropdown">
+                <div class="dataTables_length float-right">
+                  <label>
+                    <select name="pagination_length" class="form-c ontrol pagination__length custom-select form__dropdown input-md" [(ngModel)]="paginationObject.PageSize" (change)="changeFilter()">
+                      <option [value]="pagination" *ngFor="let pagination of paginationOptions;">{{pagination}}</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table" [ngClass]="tableClass">
+                        <thead>
+                          <tr>
+                            <th scope="col" *ngFor="let column of columnsList" (click)="column.AllowSorting && changeSorting(column.ColumnName)" [class]="column.ClassName" [hidden]="hideAdditionalColumn(column)">
+                              <span>{{column.DisplayName}}</span> 
+                              <i class="far" *ngIf="sortingObject.OrderBy==column.ColumnName" [ngClass]="sortingObject.ClassName"></i>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody [ngClass]="tableBodyClass">
+                          <ng-content *ngIf="!showLoading && dataList.length > 0"></ng-content>
+                          <tr *ngIf="showLoading || (!dataList || dataList.length == 0)">
+                              <td [attr.colspan]="columnsList.length" *ngIf="!showLoading && dataList.length == 0" class="text-center">No data found.</td>
+                              <td [attr.colspan]="columnsList.length" *ngIf="showLoading" class="text-center">Please Wait While Data is Loading...</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+            </div>
+        </div>
+        <div class="dt-toolbar-footer d-flex" *ngIf="!showLoading">
+          
+          <div class="col-sm-6 col-xs-12 hidden-xs">
+            <div class="dataTables_info" id="DataTables_Table_1_info" role="status" aria-live="polite" *ngIf="paginationObject.TotalItems > paginationObject.PageSize">
+              <span class="page-number-info"><strong>Page : </strong> {{paginationObject.PageNo}}/{{paginationObject.TotalPage}}</span>
+            </div>
+          
+            <div *ngIf="paginationObject.TotalItems > 0" class="dataTables_info" id="DataTables_Table_2_info" role="status" aria-live="polite">
+              <span class="page-number-info"><strong>Total Rows : </strong> {{paginationObject.TotalItems}}</span>
+            </div>
+        </div>
+          <div class="col-xs-12 col-sm-6" *ngIf="paginationObject.TotalItems > paginationObject.PageSize">
+              <div class="dataTables_paginate paging_simple_numbers float-right">
+                <pagination [(ngModel)]="paginationObject.PageNo" 
+                    [boundaryLinks]="true" 
+                    [totalItems]="paginationObject.TotalItems" 
+                    [maxSize]="paginationObject.MaxSize" 
+                    [itemsPerPage]="paginationObject.PageSize"
+                    [customFirstTemplate]="firstTemplate"
+                    [customLastTemplate]="lastTemplate"
+                    [customPreviousTemplate]="prevTemplate"
+                    [customNextTemplate]="nextTemplate" 
+                    (pageChanged)="pageChanged($event)">
+                </pagination>
+                <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <i class="fal fa-chevron-right"></i>
+                </ng-template>
+                
+                <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                    <i class="fal fa-chevron-left"></i>
+                </ng-template>
+                
+                <ng-template #lastTemplate let-disabled="disabled" let-currentPage="currentPage">
+                  <i class="fal fa-chevron-double-right"></i>
+                </ng-template>
+                
+                <ng-template #firstTemplate let-disabled="disabled" let-currentPage="currentPage">
+                  <i class="fal fa-chevron-double-left"></i>
+                </ng-template>
+              </div>
+          </div>
+    </div>
+    </div>
+    
+</div>

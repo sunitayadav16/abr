@@ -1,0 +1,78 @@
+<div class="proforma__list">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-auto">
+      <h1 class="col__tabletitle">Proforma Batch List</h1>
+    </div>
+    <div class="col-4 text-right">
+      <a routerLink="/admin/proforma-management/upload"><i class="fal fa-file-upload"></i> Upload New</a>
+    </div>
+  </div>
+
+  <div class="table__wrapper">
+    <div id="batchProformaList">
+        <common-grid (changeTable)="filterGrid($event)">
+          <tr *ngFor="let proforma of proformaBatchList; let i = index">
+            <td>
+              <p>{{proforma.proformaBatchName}}</p>
+            </td>
+            <td>
+              <span class="batch__status">{{proforma.proformaStatusName}}</span>
+            </td>
+            <td>
+              <div class="p-3 text-right table__links">
+                <span>
+                  <a href="javascript:void(0)" (click) ="openInstructionModal(proforma.proformaBatchId, proforma.instructions)">
+                    <i class="fal fa-info-circle fa-lg"></i> Instructions</a>
+                </span>
+                <span class="status">
+                  <a href="javascript:void(0)" (click)="onBatchStatusChange(proforma)" [class.disabled]="addDisabledClass">
+                    <i *ngIf="isActivatedBatch(proforma); else elseBlock" class="fal fa-toggle-off"></i>
+                    <ng-template #elseBlock><i class="fal fa-toggle-on"></i></ng-template>
+                    {{ isActivatedBatch(proforma) ? 'Deactivate' :'Activate' }}
+                  </a>
+                </span>
+                <span>
+                  <a href="javascript:void(0)" (click)="openUploadModal(proforma.proformaBatchId)">
+                    <i class="fal fa-file-upload"></i> Upload</a>
+                </span>
+                <span>
+                  <a href="javascript:void(0)" [class.disabled]="!isNewBatch(proforma)"
+                    (click)="openDeleteConfirmationPopup(proforma)"><i class="fal fa-trash-alt"></i> Delete</a>
+                </span>
+                <span class="ellipse__container">
+                  <a routerLink="/admin/proforma-management/batch/{{proforma.proformaBatchId}}">
+                    <i class="fal fa-long-arrow-right"></i>
+                  </a>
+
+                    <!-- <a class="menu-item" href="javascript:void(0)" 
+                      (click)="toggleBtn(i)" 
+                      [tooltip]="template" 
+                      [class.disabled]="showTooltip && !(i == currentIndex)"
+                      triggers="click" 
+                      placement="left">
+                      <i [ngClass]="showTooltip && (i == currentIndex) ? 'fas fa-times-circle' : 'fas fa-ellipsis-v'"></i>
+                    </a>
+                   
+                    <ng-template #template>
+                        <ul>
+                          <li>
+                            <a routerLink="/admin/proforma-management/batch/{{proforma.proformaBatchId}}">
+                              Proforma list <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                          </li>
+                          <li>
+                            <a routerLink="/admin/proforma-management/collection-contacts/{{proforma.proformaBatchId}}">
+                              Collection contacts <i class="fal fa-long-arrow-right"></i>
+                            </a>
+                          </li>
+                        </ul>
+                    </ng-template> -->
+
+                </span>
+              </div>
+            </td>
+          </tr>
+        </common-grid>
+    </div>
+  </div>
+</div>

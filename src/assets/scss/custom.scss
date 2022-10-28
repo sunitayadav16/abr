@@ -1,0 +1,910 @@
+body {
+  background-color: $body-bgcolor;
+  font-family: MaisonNeue-Book;
+  color: $black-color;
+}
+p {
+  font-family: MaisonNeue-Book;
+  font-size: $font-size-15;
+}
+p, h1 {
+  margin: 0;
+}
+.table {
+  margin-bottom: 0;
+  thead {
+    th {
+      font-family: MaisonNeueExtended-Bold;
+      border-bottom: 0;
+      border-top: 0;
+      vertical-align: middle;
+      position: -webkit-sticky;
+      position: sticky !important;
+      top: 0;
+      background: $white-color;
+      z-index: 3;
+      box-shadow: inset 0 -1px 0px $table-border-color, inset 0 1px 0 $table-border-color;
+    }
+    td {
+      border-bottom: 1px solid $table-border-color;
+      border-top: 0;
+    }
+  }  
+  th, td {
+    font-size: $font-size-14;
+    color: $table-text-color;
+    border-color: $table-border-color;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  
+}
+a {
+  color: $black-color;
+  &:hover, &:focus {
+    color: $black-color;
+    text-decoration: none;
+  }
+}
+.modal-content {
+  border-radius: 0;
+  border: 1px solid $border-color;
+}
+.main__wrapper {
+  margin-top: 123px;
+  margin-bottom: 50px;
+}
+.abr__title {
+  padding-left: 4px;
+  p {
+    margin-bottom: 0;
+    font-size: $font-size-heading;
+    font-family: MaisonNeueExtended-Bold;
+  }
+}
+.col__form {
+  background-color: $white-color;
+  padding: 25px;
+  .btn__ui {
+    margin-top: 5px;
+  }
+  p {
+    font-size: $font-size-15;
+    margin-bottom: 8px;
+  }
+  a {
+    color: $black-color;
+    text-decoration: underline;
+  }
+}
+.col__title, .col__tabletitle {
+  background-color: $black-color;
+  color: $white-color;
+  font-size: $font-size-heading;
+  text-align: center;
+  padding: 10px 10px 15px 10px;
+  font-family: MaisonNeueExtended-Bold;
+  margin:0;
+}
+.col__tabletitle {
+  text-align: left;
+  padding: 10px 40px;
+}
+.abr__form {
+  margin-bottom: 15px;
+  .form-control {
+    border-top:0;
+    border-left:0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: .2rem 0
+  }
+  label {
+    font-size: $font-size-14;
+    margin-bottom: 0;
+  }
+}
+.btn__ui {
+  min-width: 121px;
+}
+.btn__ui, 
+.form__dropdown, 
+.abr__form .custom__fileinput {
+  border-radius: 0;
+  font-size: $font-size-11 + 2;
+  height: 35px;  
+}
+.form__dropdown {
+  margin: 5px 15px 0 0;
+  font-family: MaisonNeue-Mono;
+  background: #fff url('../images/angle-down.png') right 10px center no-repeat;
+  cursor: pointer;
+}
+.dropdown-toggle {
+  &.form__dropdown, &.filter__dropdown {
+    text-align: left;
+    &:after {
+      content: none;
+    }
+  }
+}
+.abr__form .form__dropdown {
+  min-width: 171px;
+}
+.button__black, .button__black:hover {
+    background-color: $black-color ;
+    color: $white-color;
+}
+.button__white, .button__white:hover {
+  background-color: $white-color ;
+  color: $black-color;
+  border: 1px solid $black-color;
+}
+.form__dropdown, .form__dropdown:hover, .form__dropdown:focus, .form__dropdown.dropdown-toggle  {
+    background-color: $white-color;
+    border: 1px solid $border-color;
+    color: $black-color;
+    text-decoration: none;    
+}
+input.form-control, input, textarea.form-control {
+  font-size: $font-size-11 + 2;
+  height: 35px;
+  border: 1px solid $border-color;
+  padding: 0 15px;
+  border-radius: 0;
+  color: $black-color;
+  font-family: MaisonNeue-Mono;
+}
+.form-control {
+  &:focus {
+    color: $black-color;
+  }
+}
+.move__next  a {
+  text-decoration: none;
+  font-family: MaisonNeue-Mono;
+}
+.skip__link a {
+  font-size: $font-size-11;
+}
+.next__link a {
+  font-size: $font-size-11 + 2;
+}
+.bold__text {
+  font-family: MaisonNeue-Demi;
+}
+.custom__fileinput {
+    display: inline-block;    
+    color: $white-color;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-family: MaisonNeue-Mono;
+}
+.upload__gradpink {
+  background: $pink-gradient;
+  min-width: 210px;
+  margin-right: 20px;
+}
+.upload__gradblack {
+  background: $black-color;
+  min-width: 169px;
+}
+.blue__gradient {
+  background: $blue-gradient;
+  border: none;
+}
+.orange__gradient {	
+  background: $orange-gradient;	
+  border: none;
+}
+/* Alerts */
+
+.alert__box {
+  margin: 8px 0;
+  .alert-success {
+      color: #054519;
+      background-color: #CEEED8;
+      border-color: #BAE8C9;
+    button {
+      color: #054519;
+    }
+  }
+}
+.alert__box {
+  margin: 8px 0;
+  .alert-danger {
+      color: #55111C;
+      background-color: #FED5DA;
+      border-color: #FEC4CA;
+    button {
+      color: #55111C;
+    }
+  }
+  .alert {
+    font-size: $font-size-11;
+    border-radius: 0;
+    margin-bottom: 8px;
+  }
+  button {
+    font-size: $font-size-11 + 1;
+  }
+}
+.dull__btn {
+  opacity: 0.61;
+  pointer-events: none;
+}
+.text__link {
+  a {
+    font-size: $font-size-11 + 2;
+    font-family: MaisonNeue-Book;
+  }
+}
+.col__sec {
+  padding: 26px 40px;
+  p  {
+    font-size: $font-size-15 + 3;
+    font-family: MaisonNeue-Medium;
+  }
+}
+.table__wrapper {
+  background-color: $white-color;
+  .table__links {
+    span {
+      padding-left: 20px;
+    }
+  }
+  .custom-control-label:before{
+    background-color: $white-color;
+    border-radius: 0;
+    border-color: $black-color;
+  }
+  .custom-control-input {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+    background-color:black;
+    border-color: $black-color;
+  }
+}
+
+// Proforma details
+.tablehead__section {
+  background-color: $black-color;
+  a {
+    color: $white-color;
+  }
+  span {
+    padding-right: 20px;
+  }
+  i {
+    margin-right: 5px;
+  }
+}
+.proforma__detail {  
+  .table__wrapper {
+    padding: 23px 40px 87px;
+    .filter__row {
+      min-height: 89px;
+      padding: 0 20px;
+      .fa__filter {
+        vertical-align: middle;
+        font-size: $font-size-22;
+        position: relative;
+        margin-left: 20px;
+        padding: 0;
+        i {
+          margin-left: 0;
+        }
+        .custom__tooltip {
+          top: -44px;
+          color: #fff;
+          text-align: center;
+          min-height: 25px;
+          padding: 5px 30px;
+          display: none;
+        }
+          &:hover {
+            .custom__tooltip {
+              display: block;
+          }
+        }
+      }     
+      h2 {
+        font-family: MaisonNeueExtended-Bold;
+        font-size: $font-size-15 + 5;
+      }
+      .form__dropdown {
+        width: 244px;
+        margin: 0;
+      }
+      .dropdown {display: inline-block;}
+      .dropdown-menu {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        border-color: $border-color;
+        min-width: 244px;
+        z-index: 1032;
+        border-top: 0;
+        li {
+          padding: 11px 0 12px 0px;
+          border-bottom: 1px solid $border-color;
+          font-size: $font-size-14;
+          .dropdown-item {
+             padding: 0 15px;
+             &:hover {
+               background-color: transparent;
+             }
+          }
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+        .custom-control-input {
+          z-index: 1;
+          left: 22px;
+        }
+        .custom-control-label {
+          color: $black-color;
+          padding-top: 2px;
+        }
+      }
+      &.filter__row__title {
+        min-height: 50px;
+      }
+    }
+    .nav-tabs {
+      border-bottom: 1px solid $table-border;
+      .nav-item {
+        .nav-link {
+          color: $light-grey;
+          border-radius: 0;
+          border-width: 0 0 4px 0;
+          font-size: $font-size-15;
+          margin-bottom: -2px;
+          padding: 8px 20px;          
+          &:hover {
+            border-color: transparent
+          }
+          .nav-item {
+            &.show {
+              .nav-link {
+                border-color: transparent transparent #290606;
+              }
+            }
+          }
+          
+        }
+        &.active a {
+          color: $black-color;
+          border-color: transparent transparent $black-color;
+          font-family: "MaisonNeue-Medium";
+          &:hover {
+            border-color: transparent transparent $black-color;
+          }
+        }
+      }
+    }
+    .table {
+      thead {
+        th {
+          i {
+            font-size: $font-size-11 - 1;
+            position: absolute;
+            right: 5px;
+            top: 16px;
+            margin-left: 3px;
+          }
+        }
+      }
+      th, td {
+        padding: 5px 20px;
+        position: relative;
+        height: 46px;
+      }
+      tbody {
+        tr {
+          td {
+            .editing__icons {
+              display: inline-block;
+              width: 30px;
+              span {
+                position: absolute;
+                top: 10px;
+                right: 5px;              
+                a {
+                  margin-left: 5px;
+                  font-size: 19px;
+                  .edit__field {
+                    display: none;
+                  }
+                  .check__ok {
+                    color: $check-icon-color;
+                    display: none;
+                  }
+                  .cancel__ok {
+                    color: $cancel-icon-color;
+                    display: none;
+                  }
+                }
+              }
+            }
+            &:hover {
+              // background-color: $table-border-color;
+              cursor: pointer;
+              .editing__icons { 
+                span {
+                  i {
+                    display: inline-block;
+                  }
+                }
+              }
+            }
+          }
+        
+        } 
+      }     
+    }
+  }  
+}
+
+.form__style {
+  .form-control, .form__dropdown {
+    &.is-invalid {
+      border-color: $invalid-border-color;
+  
+      + .invalid-feedback {
+        display: block;
+      }
+    }
+  }
+}
+
+.invalid-feedback {
+  color: $status-color-rejected;
+  font-size: $font-size-11;
+  font-family: MaisonNeue-Mono;
+}
+.menu__dropdownicon {
+  .dropdown-toggle {
+    &:after {
+      display: none;
+    }
+  }
+}
+.custom__tooltip {
+  width: auto;
+  background: $blue-gradient;
+  left: 50%;
+  position: absolute;
+  top: -53px;
+  transform: translateX(-50%);
+  min-height: 42px;
+  border-radius: 5px;
+  font-size: $font-size-11 + 2;
+  padding: 10px 20px;
+  font-family: MaisonNeue-Book;
+  display: none;
+  z-index: 4;
+  & span {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #2338d0;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: -6px;
+  }
+}
+// tooltip style
+.tooltip.bs-tooltip-auto[x-placement^=auto] .arrow::before, 
+.tooltip.bs-tooltip-top .arrow::before {
+  border-top-color: #2338d0;
+}
+.tooltip.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: #2338d0;
+}
+.tooltip.bs-tooltip-left .arrow::before {
+  border-left-color: #2338d0;
+}
+.tooltip.bs-tooltip-right .arrow::before {
+  border-right-color: #2338d0;
+}
+
+.tooltip-inner {
+  background: $blue-gradient;
+  font-size: $font-size-11 + 3;
+  border-radius: 5px;
+  width: 300px;
+}
+.btn__link {
+  color: $white-color;
+  min-width: 121px;
+  margin-right: 0;
+  font-family: MaisonNeue-Mono;
+  &:hover, &:focus {
+    color: $white-color;
+  }
+}
+// Role management 
+.role__management {
+  .table__wrapper {
+    .table {
+      tbody {
+        tr {
+          &:hover {
+            background-color: transparent;
+          }
+          td:first-child {
+            position: -webkit-sticky;
+            position: sticky !important;
+            background: $white-color;
+            left: 0;
+            z-index: 3;
+          }
+        }
+      }
+      thead {
+        tr {
+          th:nth-child(even) {
+            background-color: $bgcolor-grey;
+          }
+          th:first-child {
+            position: -webkit-sticky;
+            position: sticky !important;
+            background: $white-color;
+            left: 0;
+            z-index: 4;
+          }
+        }
+      }
+    }
+  }
+}
+// Modal style
+.modal-content, .modal-header {
+  border-radius: 0;
+}
+.modal__style {  
+  .modal-header {
+    border-bottom: none;
+    padding: 20px 25px 10px;
+    .modal-title {
+      font-size: $font-size-15;
+      font-family: MaisonNeueExtended-Bold;
+    }
+  }
+  .modal-body {
+    padding: 0 25px;
+    .form-group {
+      margin-bottom: 0;      
+      font-family: MaisonNeue-Mono;      
+    }
+  }
+  .modal-footer {
+    justify-content: flex-start;
+    border-top: none;
+    padding: 16px 25px 25px;
+    .btn {
+      margin: 0;
+      &.button__black {
+        margin-right: 15px;
+      }
+    }
+  }
+}
+.modal__ui {
+  .modal-header {
+    padding-bottom: 0;
+    .close {
+      padding: 8px;
+      font-size: 20px;
+      color: $black-color;
+      opacity: 1;
+    }
+  }
+  .modal-body {
+    .form-group {
+      margin-top: 25px;
+      .form-control {
+        border: 1px solid $border-color;
+        padding: 0.2rem 15px;
+        &.is-invalid {
+          border: 1px solid $invalid-border-color;
+        }
+      }
+      label {
+        font-family: "MaisonNeue-Bold";
+        margin-bottom: 5px;
+      }
+      .form__dropdown.ng-select {
+        margin-top: 0;
+      }
+    }
+  }
+  .modal-footer {
+    padding-top: 30px;
+  }
+}
+.tooltip__hover {	
+  position: relative;
+}
+textarea.form-control {
+  resize: none;
+  padding: 15px;
+  font-family: MaisonNeue-Book;
+  font-size: $font-size-14;
+}
+.link__backward {
+    margin-bottom: 5px;
+    font-size: $font-size-11 + 2;
+    display: inline-block;
+    i {
+      font-size: 21px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+}
+.content__ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+  display: inline-block;
+  vertical-align: middle;
+}
+// loader
+#loader {
+  width: 60px !important;
+  height: 60px !important;
+  border: 5px solid $white-color!important;
+  -webkit-animation: spin 1s linear infinite !important;
+  animation: spin 1s linear infinite !important;
+  border-top: 5px solid $table-text-color !important;
+  border-radius: 50% !important;
+}
+.loading-text {
+  top: 56% !important;
+  left: 49.8% !important;
+}
+.mimic-user {
+  &.modal-dialog {
+      min-width: 95%;
+  }
+}
+.select__proxy {
+  text-decoration: underline;
+  font-family: MaisonNeue-Mono;
+  font-size: 12px;
+
+}
+.form-control::-webkit-input-placeholder {
+  color: $black-color;
+}
+.form-control:-moz-placeholder {
+  color: $black-color;
+}
+.form-control::-moz-placeholder {
+  color: $black-color;
+}
+.form-control::placeholder {
+  color: $black-color;
+}
+.form-control:-ms-input-placeholder {
+  color: $black-color;
+}
+
+.form__style {
+  .form-group {
+    position: relative;
+    .form-control, .form__dropdown {
+      font-family: MaisonNeue-Book;
+      color: $black-color;
+      font-size: $font-size-14;
+    }
+    .invalid-feedback {
+      position: absolute;
+      bottom: -20px;
+      display: none;
+    }
+  }
+}
+// v-scroll
+.table__wrapper {
+  .table-responsive {
+    max-height: 524px;
+    position: relative;  
+    margin-bottom: 1rem;  
+  }
+}
+#batchProformaList {
+  .filter__row {
+      padding: 40px 42px 25px;
+      .form__dropdown {
+        margin-right: 0;
+      }
+  }
+  .dt-toolbar-footer {
+    padding: 0 29px;
+  }
+}
+.sticky__pos {
+  position: sticky;
+  text-align: center;
+  left: 20px;
+}
+.linkto__proforma {
+  text-decoration: underline;
+  margin-left: 6px;
+}
+
+.tab__tablelist {
+  .table {
+    tbody {
+      tr {
+        &:hover {
+          background-color: $table-border-color;
+        }
+      }
+    }
+  }
+}
+.proforma__collapse {
+  .proforma__rows {
+    tr {
+      td {
+        &:first-child {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+.adjustment__form {
+  .card {
+    border-radius: 0;
+  }
+  .card-header {
+      background-color: $bgcolor-grey;
+      &:first-child {
+          border-radius: 0;
+      }
+  }
+}
+ /* Responsive */
+@media (min-width: 992px) {
+  .col__form {
+    width: 665px;
+    max-width: 665px;
+    margin-left: 161px;
+    padding: 55px;
+  }  
+  .col__title {
+    width: 161px;
+    max-width: 161px;
+  }
+  .col__formBox {
+    margin-left: 161px;
+  }
+  .mimic-user {
+    &.modal-dialog {
+        min-width: 95%;
+    }
+  }
+}
+@media (min-width: 1200px) { 
+  .sticky__pos {
+    width: 1160px;
+  }
+}
+@media (min-width: 1345px) {
+  .container-xl {
+    width: 1319px;
+    max-width: 1319px;
+  }
+}
+@media (min-width: 1498px) {
+  .container-xl {
+    width: 1480px;
+    max-width: 1480px;
+  }
+  .mimic-user {
+    &.modal-dialog {
+        min-width: 1380px;
+    }
+  }
+  .sticky__pos {
+    width: 1340px;
+  }
+}
+@media (max-width: 767.98px) { 
+  .col__title, .col__tabletitle {
+    font-size: 18px;
+  }
+  .proforma__detail {
+    .table__wrapper {
+      .filter__row {
+        padding-top: 20px;
+      }
+    }
+  }
+ }
+ @media (max-width: 1199px) { 
+  .sticky__pos {
+    width: 600px;
+    left: 132px;
+    transform: translateX(-84px);
+  }
+ }
+ @media (max-width: 1343px) { 
+  .container-xl {
+    width: 100%;
+    max-width: 100%;
+  }
+ }
+// other functional UI
+/* Toggle Button */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+      &:checked + .slider {
+          background: $black-color;
+          &:before {
+              -webkit-transform: translateX(20px);
+              -ms-transform: translateX(20px);
+              transform: translateX(20px);
+            }
+      }
+      &:focus + .slider {
+          box-shadow: 0 0 1px $black-color;
+      }
+  }
+  .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #707070;
+      -webkit-transition: .4s;
+      transition: .4s;
+      &.round {
+          border-radius: 34px;
+          &:before {
+              border-radius: 50%;
+            }
+      }
+      &:before {
+          position: absolute;
+          content: "";
+          height: 23px;
+          width: 23px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+    }
+}
+label.switch {margin-bottom:0;}
+
+
+/* Dropdown */
+.form__dropdown.ng-select {padding: 6px 12px;}
+.form__dropdown.ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container {box-shadow: none;}
+.form__dropdown.ng-select .ng-select-container:hover { box-shadow: none;}
+.ng-clear-wrapper {
+    padding-left: 3px;
+}
+.custom-select.is-invalid, .was-validated .custom-select:invalid { background: #fff url('../images/angle-down.png') right 10px center no-repeat; }

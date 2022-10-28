@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 col__selectmonth">
+    <div class="row">
+      <div class="col-auto col__title">Upload</div>
+      <div class="w-100"></div>
+
+      <div class="col-auto col__form">
+        <div class="text-right move__next skip__link" routerLink="/admin/other-list-management/{{routeParamCategoryId}}">
+          <a href="javascript:void(0)">Back</a>
+        </div>
+        <div class="fileupload__wrap">
+          <p class="mb-3">Please upload the <span class="bold__text">{{categoryName}}</span> </p>
+          <p class="bold__text">Upload</p>
+          <form class="form-inline abr__form">
+            <div class="row">
+              <div class="col-8">
+                <div class="form-group uploadproforma">
+                  <label for="uploadLayout" class="custom__fileinput mr-0" [ngClass]="uploadInput.value ? 'upload__gradpink' : 'light__grey' ">{{categoryName}} <i class="fal fa-file-upload"></i></label>
+                  <input #uploadLayout id="uploadLayout" type="file" class="pdfInputFile" title="" #uploadInput (change)="onFileSelection($event)">
+                </div>
+              </div>
+              <!-- <div class="w-100"></div> -->
+              <div class="col-4">
+                <button type="submit" class="btn btn-default btn__ui button__black mt-0" [disabled]="!uploadInput.value" (click)="submit(categoryName)">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

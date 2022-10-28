@@ -1,0 +1,107 @@
+@import '../../../../../assets/scss/variables.scss';
+.cdkDrag{
+    display: flex;
+    .cdkDrag-container {
+        width: 49%;
+        max-width: 100%;
+        display: inline-block;
+        vertical-align: top;
+        background-color: $bg-color2;
+        border: 1px solid $border-color-other;
+        padding: 20px 45px 40px;
+        &.available__userswrap {
+            margin-right: 40px;
+        }
+        h4 {
+            font-size: 17px;
+            font-family: "MaisonNeue-Bold";
+            margin-top: 8px;
+        }
+        .mimic__search {
+            float: left;
+            width: 100%;
+            margin-bottom: 14px;
+            h4 {
+                float: left;
+            }
+            .dataTables_filter {
+                float:right;
+                position: relative;
+                input {
+                    border: none;
+                    padding-right: 40px;
+                    min-width: 247px;
+                    font-size: 12px;
+                }
+                .search__icon {
+                    position: absolute;
+                    top:0;
+                    right: 0;
+                    padding: 9px 12px 6px;
+                    font-size: 12px;
+                }
+            }
+        }
+        .user-list {
+            border: solid 1px $border-color-other;
+            min-height: 398px;
+            background: white;
+            display: block;
+            max-height: 398px;
+            overflow-y: auto;
+            position: relative;
+        }
+        &.selected__userswrap {
+            h4 {
+                margin: 8px 0 21px;
+            }
+        }
+    }    
+}
+.drag-box {
+    padding: 22px 15px 22px 22px;
+    border-bottom: solid 1px $border-color-other;
+    color: $black-color;
+    cursor: move;
+    background: white;
+    font-size: $font-size-14;
+    z-index: 9999 !important;
+    font-family: "MaisonNeue-Demi";
+
+    i {
+        margin-right: 22px;
+        font-size: 22px;
+        vertical-align: middle;
+        color: $baricon-color;
+    }
+}
+.cdk-drag-preview {    
+    box-shadow: 0 0 0 2px $border-color-blue;    
+        i {
+            color: $border-color-blue;
+        }
+    }
+.cdk-drag-placeholder {
+    border: 2px dashed $border-color-blue;
+    opacity: 0.3;
+}  
+
+.user-list:empty:before {
+    content: 'No user available.';
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+  
+.selected__userswrap {
+    .user-list:empty:before {
+        content: 'No proxy user available.';
+    }
+}

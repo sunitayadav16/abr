@@ -1,0 +1,17 @@
+.clear__filterBtn{
+    cursor: pointer;
+    opacity: 0;
+    &.show{
+        opacity: 1 !important;
+    }
+    .applied__filter__dot{
+        background: #1488E8;
+        font-size: 3px;
+        padding: 4px 4px;
+        border-radius: 100%;
+        position: absolute;
+        top: 3px;
+        right: 10px;
+        z-index: 1;
+    }
+}

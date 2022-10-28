@@ -1,0 +1,140 @@
+@import '../../../../../assets/scss/variables.scss';
+
+.note__section {
+    background-color: $bgcolor-grey;
+    padding: 15px 40px;
+    margin-bottom: 4px;
+    &.collapse__wrap {
+        .table {
+            thead {
+                th {
+                    background: transparent;
+                    box-shadow: none;
+                    min-width: 180px;
+                }
+            }
+        }
+        .table {
+            th {
+                border-top: none;
+                border-bottom: 2px solid $border-gray;
+                &:first-child {
+                    padding-left: 0;
+                    text-align: left;
+                }
+            }
+            td {
+                border-bottom: 1px solid $table-border;
+                white-space: normal;
+            }
+            tr {
+                td {
+                    &:first-child {
+                        padding-left: 0;
+                        text-align: left;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+.adjustment__form {
+    padding-bottom: 40px;
+    .form__style {
+        .form-group {
+            margin: 0 0 28px;
+            .form-control, .form__dropdown {
+                font-size: 12px;
+                font-family: MaisonNeue-Book;
+                color: $black-color;
+            }
+            label {
+                font-size: $font-size-14;
+                margin-bottom: 10px;
+            }
+            textarea {
+                &.form-control {
+                    padding: 6px 15px;
+                }
+            }
+        }
+        .btn__row {
+            padding: 0;
+            span {
+                float: right;
+                color: $light-grey;
+                font-size: $font-size-14 - 1 ;
+            }
+        }
+        .addmore__adjustments {
+            float: right;
+            i {
+                font-size: 18px;
+            }
+            a {
+                font-family: MaisonNeueExtended-Bold;
+                font-size: $font-size-14;
+            }
+        }        
+    }
+    .external__link {
+        position: relative;
+        float: right;
+        font-size: 18px;
+        &:hover {
+            .custom__tooltip {
+                display: block;
+                color: $white-color;
+                width: 203px;
+                padding: 6px 15px;
+                top: -60px;
+            }
+        }
+    }
+    .disabled{
+        pointer-events:none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+    .input_overlay_text {
+        // position: absolute;
+        display: block;
+        top: 22px;
+        left: 0;
+        padding: 0 10px 0 0;
+        font-size: 12px;
+        background-color: #fff;
+    }
+}
+
+.col-xs-12.col-sm-6.col-lg-4.col-xl-3 {
+    display: flex;
+    align-items: center;
+    .form-group{
+        width: 100%;
+    }
+}
+
+input{
+    &.hideArrow{
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    }
+    }
+}  
+
+accordion-group{
+    ::ng-deep{
+        .card-header{
+            display: none;
+        }
+    }
+}
+
+.link__backward{
+    cursor: pointer;
+}

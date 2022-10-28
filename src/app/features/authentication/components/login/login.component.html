@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-md-8 col__login">
+        <div class="row">
+            <div class="col-auto col__title">Login</div>
+            <div class="w-100"></div>
+            <div class="col-auto col__form">
+                <form class="abr__form" name="form" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onSubmit()"
+                    novalidate>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="email" #email="ngModel" [(ngModel)]="loginRequest.email"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && email.invalid }" email required />
+                        <div *ngIf="loginForm.submitted && email.invalid" class="invalid-feedback">
+                            <div *ngIf="email.hasError('required')">Email is required</div>
+                            <div *ngIf="email.hasError('email')">Please enter valid email</div>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                            #password="ngModel" [(ngModel)]="loginRequest.password"
+                            [ngClass]="{ 'is-invalid': loginForm.submitted && password.invalid }" required>
+                        <div *ngIf="loginForm.submitted && password.invalid" class="invalid-feedback">
+                            <div *ngIf="password.hasError('required')">Password is required</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn__ui button__black">Submit</button>
+                    <span>
+                        <a class ="forgotPswdLink" routerLink="/forgot-password">Forgot password </a>
+                    </span>
+                    
+                </form>
+                <div class="w-100">
+                    <p>For password setup, please follow instructions available in the received 'Welcome to ABR' email.</p>
+                    <p>If no 'Welcome to ABR' email has been received, please contact <a href="mailto:GlobalOperationsTeam@buck.com" >GlobalOperationsTeam@buck.com</a> for support.
+                        </p>
+                    <p>For password reset, click on 'Forgot password'</p>
+                    <p>Self-Service Password Reset (SSPR) will be available in a future platform update.</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

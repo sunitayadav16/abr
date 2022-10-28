@@ -1,0 +1,3 @@
+<base-modal modalTitle="Drag and drop Available users to the “Selected users” area to allow proxys" modalClass="mimic-user-modal" (onSave)="saveProxyUser()"  (onClose)="close()">
+    <common-mimic-user [id]="id" [userManagement]="true" (submitted)="saveProxyUser($event)" (cancelled)="close($event)"></common-mimic-user>
+</base-modal>

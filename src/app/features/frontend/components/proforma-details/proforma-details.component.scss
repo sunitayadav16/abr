@@ -1,0 +1,208 @@
+@import "../../../../../assets/scss/variables.scss";
+
+.note__section {
+    background-color: $bgcolor-grey;
+    padding: 15px 40px;
+    margin-bottom: 4px;
+    &.collapse__wrap {
+        .table {
+            thead {
+                th {
+                    background: transparent;
+                    box-shadow: none;
+                    min-width: 180px;
+                }
+            }
+        }
+        .collapse__instructions {
+            .table {
+                th {
+                    border-width: 2px;
+                }
+            }
+        }
+        .file__drag {
+            p {
+                font-size: $font-size-14;
+                font-family: MaisonNeueExtended-Bold;
+                margin: 20px 0 10px;
+            }
+        }
+        .collapse__link {
+            span {
+                display: block;
+                text-align: right;
+                font-size: $font-size-11 + 3;
+                margin-top: 10px;
+            }
+        }
+        .collapse__buttons {
+            border-top: 1px solid $table-border;
+            padding-top: 15px;
+            margin-top: 8px;
+            .tooltip__hover {
+                &:hover {
+                    .custom__tooltip {
+                        display: block;
+                        width: 227px;
+                        top: -75px;
+                        color: $white-color;
+                    }
+                }
+            }
+            .btn {
+                margin: 0 5px 5px 0;
+                &:disabled {
+                    opacity: 0.3;
+                }
+            }
+        }
+        .table {
+            th {
+                border-top: none;
+                border-bottom: 2px solid $border-gray;
+                &:first-child {
+                    padding-left: 0;
+                    text-align: left;
+                }
+            }
+            td {
+                border-bottom: 1px solid $table-border;
+                white-space: normal;
+            }
+            tr {
+                td {
+                    &:first-child {
+                        padding-left: 0;
+                        text-align: left;
+                    }
+                }
+            }
+            .table__width {
+                tr {
+                    td {
+                        vertical-align: top;
+                        &:first-child {
+                            width: 33%;
+                        }
+                        textarea {
+                            width: 100%;
+                            resize: none;
+                        }
+                    }
+                }
+            }
+            .proforma_layout {
+                tr {
+                    td {
+                        &:first-child {
+                            width: 33%;
+                        }
+                        &:nth-child(3),
+                        &:nth-child(4),
+                        &:nth-child(5) {
+                            padding-top: 23px;
+                        }
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
+        textarea {
+            &.form-control {
+                height: 76px;
+            }
+        }
+        .showDetails {
+            display: block !important;
+        }
+        .radio__buttons {
+            .form-check {
+                align-items: center;
+                label {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}
+.link__backward {
+    margin-bottom: 0;
+}
+.proforma__collapse {
+    .table__wrapper {
+        .proforma__rows {
+            tr {
+                &:hover {
+                    background-color: $table-border-color;
+                }
+                td {
+                    &:first-child {
+                        text-align: center;
+                    }
+                }
+                // &.goto__proforma {
+                //     position: relative;
+                //     &:hover {
+                //         td {
+                //             &.hovered__element {
+                //                 background: $hovered-row-color;
+                //                 display: block;
+                //                 position: absolute;
+                //                 top: 0;
+                //                 left: 0;
+                //                 right: 0;
+                //                 bottom: 0;
+                //                 text-align: center;
+                //                 border: 0;
+                //                 padding: 0;
+                //             }
+                //         }
+                //     }
+                // }
+            }
+            .sticky__pos {
+                button {
+                    &.ref__btn {
+                        height: 46px;
+                        margin-right: 8px;
+                        padding: 5px 25px;
+                        line-height: 36px;
+                        font-size: $font-size-14;
+                        i {
+                            margin-right: 15px;
+                        }
+                        &:hover {
+                            background: transparent linear-gradient(270deg, #e46b13 0%, #fdb521 100%) 0% 0% no-repeat !important;
+                            border: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.showMore{
+    text-decoration: underline;
+    color : blue;
+    cursor: pointer;
+}
+
+@media (max-width: 991px) {
+    .proforma__collapse .table__wrapper .proforma__rows .sticky__pos button.ref__btn i {
+        margin-right: 3px;
+    }
+    .proforma__collapse .table__wrapper .proforma__rows .sticky__pos button.ref__btn {
+        padding: 5px 10px;
+        margin-right: 3px;
+    }
+    .sticky__pos {
+        left: 15%;
+    }
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+    .sticky__pos {
+        left: 15%;
+    }
+}

@@ -1,0 +1,43 @@
+<div class="proforma__detail proforma__collapse">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <h1 class="col__tabletitle blue__gradient">Proforma Full Details</h1>
+        </div>
+        <!-- <div class="col-xs-12 col-md-5 text-right">
+            <a routerLink="/home/proforma-details/{{proformaId}}" class="link__backward"><i class="fal fa-long-arrow-left"></i> Back </a>
+        </div> -->
+    </div>
+    <div class="table__wrapper">
+        <div class="row">
+            <div class="col-12">                    
+                <div class="row align-items-center filter__row">
+                    <div class="col-6"><h2>Proforma Full Details</h2></div>
+                    <div class="col-6 text-right">
+                        <show-hide-grid-columns 
+                            *ngIf="hasColumnFilterPermission"
+                            [grid]="grid"
+                            [columnsList]="additionalColumnsList">
+                        </show-hide-grid-columns>
+                        <!-- <a href="javascript:void(0);" data-toggle="modal" data-target="#filterFieldModal" class="fa__filter">
+                           <i class="fal fa-filter"></i> 
+                            <global-row-filter></global-row-filter>
+                            <span class="custom__tooltip">Filter
+                                <span></span>
+                            </span>
+                        </a> -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                       <common-grid-alt 
+                            [grid]="grid" 
+                            [columnsList]="columnsList" 
+                            orderBy="clientRegion" 
+                            (changeTable)="filterGrid($event)">
+                       </common-grid-alt>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

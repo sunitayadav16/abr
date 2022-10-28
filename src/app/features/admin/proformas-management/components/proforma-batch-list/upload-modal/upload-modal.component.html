@@ -1,0 +1,56 @@
+<base-modal modalTitle="Upload" (onClose)="close()" class="upload__adv__comm">
+  <div class="fileupload__wrap">
+    <div class="row">
+      <div class="col-11 radio__btn">
+        <div class="custom-control custom-radio custom-control-inline">
+          <input class="custom-control-input green mt-0" type="radio" name="flexRadioDefault" id="advance" (click)="showOpenAirInput('advance')" checked>
+          <label class="custom-control-label" for="advance">
+            Advances & Commissions
+          </label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input class="custom-control-input green mt-0" type="radio" name="flexRadioDefault" id="openAir" (click)="showOpenAirInput('openAir')" >
+          <label class="custom-control-label" for="openAir">
+            OpenAir Status
+          </label>
+        </div>
+      </div>
+    </div>
+    <form class="form-inline abr__form">
+      <div class="row" *ngIf="!isOpenAirInput">
+        <div class="col-auto pr-0 mr-4">
+          <div class="form-group uploadproforma">
+            <label for="upload" class="custom__fileinput mr-0" [ngClass]="advanceUploadInput.value ? 'upload__gradpink' : 'light__grey'"
+              [class.light__grey]="advancebackgroundColor">Advances
+              <i class="fal fa-file-upload"></i></label>
+            <input type="file" class="pdfInputFile" title="" #advanceUploadInput (change)="onChange($event, 0)">
+          </div>
+        </div>
+        <div class="col-auto pl-0">
+          <div class="form-group uploadproforma">
+            <label for="upload" class="custom__fileinput mr-0" [ngClass]="commissionUploadInput.value ? 'upload__gradpink' : 'light__grey'"
+              [class.light__grey]="commissionbackgroundColor">Commissions
+              <i class="fal fa-file-upload"></i></label>
+            <input type="file" class="pdfInputFile" title="" #commissionUploadInput (change)="onChange($event, 1)">
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="isOpenAirInput">
+        <div class="col-auto pr-0 mr-4">
+          <div class="form-group uploadproforma">
+            <label for="upload" class="custom__fileinput mr-0" [ngClass]="advanceUploadInput.value ? 'upload__gradpink' : 'light__grey'"
+              >OpenAir Status
+              <i class="fal fa-file-upload"></i></label>
+            <input type="file" class="pdfInputFile" title="" #advanceUploadInput (change)="onChange($event, 2)">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer pl-0 pt-3">
+    <button type="submit" class="btn btn-default btn__ui button__black"
+      (click)="uploadAdvanceCommission()">Submit</button>
+    <button type="button" class="btn btn__ui button__white btn-default" (click)="close()">Cancel</button>
+  </div>
+</base-modal>
+<modal-loader [showSpinner]="loader"></modal-loader>

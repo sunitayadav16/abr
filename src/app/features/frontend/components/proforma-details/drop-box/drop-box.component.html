@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-10 col-xl-5 text-center mb-2">
+        <div class="upload__pdf" appDnd (fileDropped)="onFileDropped($event)">
+            <input [disabled]="!hasABRFileUploadsPermission || (disabled || (files?.length == 5))" type="file" #fileDropRef id="fileDropRef" class="input__file" multiple (change)="fileBrowseHandler($event)"/>
+            <label for="fileDropRef" class="custom__fileinput"><i class="far fa-file-upload"></i> Drop files here to upload or <span class="choose__file">choose file</span></label>
+        </div>
+    </div>
+    <div class="col-12 col-xl-7">
+        <div class="files-list">
+            <div class="row">
+                <div class="col-6" *ngFor="let file of files; let i = index">
+
+                    <div class="progress__wrap">
+                        <span class="file__name">
+                            <i [ngClass]="fileTypeIcon(file.fileType)"></i> 
+                            <span class="filename__ellipsis">{{ file.fileName }} </span>
+                        </span>
+                        <span class="time__consumed">
+                            {{ file.size }} 
+                            <a href="javascript:void(0)" (click)="downloadFile(file)"><i class="fal fa-download"></i></a>
+                            <a href="javascript:void(0)" [class.disabled]="disabled" (click)="openDeleteConfirmationPopup(file, i)">
+                                <i class="fal fa-trash-alt"></i>
+                                <!-- <i *ngIf="!progressPercentage(percentage)" class="fal fa-times-circle"></i> -->
+                            </a>
+                        </span>
+                        <progress-bar [progress]="100"></progress-bar>
+                    </div> 
+                </div>
+                <div class="col-6" *ngIf="percentage > 1 && percentage < 100">
+                    <div class="progress__wrap">
+                        <span class="file__name">
+                            <i class="fad fa-spinner"></i>
+                            <span class="filename__ellipsis">File uploading... </span>
+                        </span>
+                        <progress-bar [progress]="percentage"></progress-bar>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>

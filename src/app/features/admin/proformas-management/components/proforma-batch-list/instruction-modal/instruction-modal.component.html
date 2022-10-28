@@ -1,0 +1,14 @@
+<base-modal modalTitle="Add instructions" (onClose)="close()">
+    <form #form="ngForm">
+        <div class="additions__Notes" >
+            <div class="form-group mt-0">
+                <textarea name="internalNotes" class="w-100" id="internalNotes" rows="4"  [(ngModel)]="instructions"></textarea>
+            </div>
+        
+            <div class="modal-footer pl-0 pr-0 pt-3">
+                <button type="submit" class="btn btn__ui button__black mr-1" (click)="submit()">Submit</button>
+                <button type="button" class="btn btn__ui button__white" (click)="close()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</base-modal>

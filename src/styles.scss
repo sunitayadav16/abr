@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/scss/bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import "./assets/scss/fonts.scss";
+@import "./assets/scss/fontawesome";
+@import "./assets/scss/variables.scss";
+@import "./assets/scss/custom.scss";
+
+
+/* Dropdown Css */
+.ng-select .ng-select-container {
+    background-color: transparent !important;
+    border: 0px !important;
+    position: relative;
+    top: -10px;
+}   
+.ng-clear-wrapper {
+    padding-left: 5px;
+}
+.ng-arrow-wrapper {
+    opacity: 0;
+    padding-left: 15px;
+}
+
+.highlight{
+    background-color: #e6f44e;
+}
+
+/* Pagination */
+.dataTables_paginate {
+    .page-link {
+        border: 1px solid #000;
+        color: #000;
+    }
+    .page-item  {
+        &.disabled  {
+            .page-link {
+                color: #d9d9d9;
+                border-color: #000;
+            }
+        }
+        &.active {
+            .page-link {
+                background-color: #000;
+                border-color: #000;
+            }
+        }
+        &:last-child, &:first-child {
+            .page-link {
+                border-radius : 0;
+            }
+        }
+    }    
+}
+
+.instructionLink{
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
+/* Date picker */
+bs-datepicker-container {
+    border: 1px solid $border-color;
+    width: 250px; 
+    font-family: MaisonNeue-Mono;
+    .bs-datepicker-head{
+        background-color: #000;
+        text-align: center;
+        padding: 10px;
+        font-size: 16px;
+        button {
+            border: 0;
+            background: transparent;
+            color: #fff;
+            &.previous{
+                float: left;
+            }
+            &.next{
+                float: right;
+            }
+        }
+    }
+    .bs-datepicker-body {
+        text-align: center;
+        background-color: #fff;
+        tbody{
+            td{
+                padding: 0.5rem 0.9rem;
+                font-size: 12px;
+                font-family: 'MaisonNeue-Demi';
+                cursor: pointer;
+                &.disabled {
+                    color: #d8d8d8;
+                    cursor: default;
+                }
+            }
+        }
+    }
+}
+.table td {
+    border-bottom: 1px solid $table-border-color;
+    border-top: 0;
+}
+

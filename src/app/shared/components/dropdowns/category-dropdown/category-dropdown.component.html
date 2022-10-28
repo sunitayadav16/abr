@@ -1,0 +1,6 @@
+<select  class="custom-select form__dropdown" name="dropdown"
+ [(ngModel)]="value" #userRoleControl="ngModel" [ngClass]="className">
+    <option *ngFor="let user of userList" [value]="user.id"> 
+      {{user.name}}
+    </option>
+</select>

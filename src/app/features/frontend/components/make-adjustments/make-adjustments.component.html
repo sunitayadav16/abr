@@ -1,0 +1,438 @@
+<div class="proforma__detail proforma__collapse">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            <h1 class="col__tabletitle blue__gradient">Make Adjustments</h1>
+        </div>
+        <div class="col-xs-12 col-md-5 text-right">
+            <a (click) ="goToProformaDetailpage()"
+            class="link__backward"><i class="fal fa-long-arrow-left" ></i> Back </a>
+       </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="note__section collapse__wrap adjustments__table">
+                <div class="row ">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Client</th>
+                                        <th scope="col">Project</th>
+                                        <th scope="col">Task</th>
+                                        <th scope="col">Service item</th>
+                                        <th scope="col">Charge total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr >
+                                        <td>{{adjustmentDetailsData?.clientName}}</td>
+                                        <td>{{adjustmentDetailsData?.projectName}}</td>
+                                        <td>{{adjustmentDetailsData?.taskName}}</td>
+                                        <td>{{adjustmentDetailsData?.serviceName}}</td>
+                                        <td>{{adjustmentDetailsData.totalCharges | amount : currency}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Advance bills</th>
+                                        <th scope="col">General commissions</th>
+                                        <th scope="col">VBIS commissions</th>
+                                        <th scope="col">T2 hours</th>
+                                        <th scope="col">Proforma total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr >
+                                        <td>{{newAdvanceBills | amount : currency}}</td>
+                                        <td>{{newGeneralCommission | amount : currency}}</td>
+                                        <td>{{newVbisCommission | amount : currency}}</td>
+                                        <td>
+                                            {{adjustmentDetailsData.t2HoursValue?.t2HoursValue | number : '1.2-2'}}
+                                        </td>
+                                        <td>{{adjustmentDetailsData.proformaTotal?.proformaTotal | amount : currency}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table__wrapper adjustment__form">
+        <form name="form" #makeAdjustmentForm="ngForm" class="form__style"
+        (ngSubmit)="onSubmit(makeAdjustmentForm)" novalidate>
+            <fieldset [disabled]="!canEdit">
+                <div class="row">
+                    <div class="col-xs-12 col-xl-10">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="firstName">Deferrals</label>
+                                    <a href="javascript:void(0)" (click)="openProformaCharges(adjustmentDetailsData)" class="external__link">
+                                        <i class="far fa-external-link-alt"></i>
+                                        <span class="custom__tooltip">Click here to know deferral details
+                                        <span></span>
+                                        </span>
+                                    </a>
+                                    <input 
+                                        #defferalInput 
+                                        type="number" 
+                                        class="form-control hideArrow" 
+                                        id="deferrals" 
+                                        name="deferrals" 
+                                        [required]="!!adjustmentDetailsData.deferralReason"
+                                        #deferralsControl="ngModel" 
+                                        [(ngModel)]="adjustmentDetailsData.deferrals"
+                                        [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || deferralsControl.touched) && deferralsControl.invalid }"
+                                        [readonly]="!hasDeferrals && !adjustmentDetailsData.deferralReason" />
+
+                                    <div class="invalid-feedback">
+                                        <div>Please enter the deferrals.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="defferalReason">Deferral reason</label>
+                                    <input
+                                        #deferralReason 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="defferalReason" 
+                                        name="defferalReason" 
+                                        [required]="hasDeferrals"
+                                        #defferalReasonControl="ngModel"
+                                        [(ngModel)]="adjustmentDetailsData.deferralReason" 
+                                        [readonly]="!hasDeferrals && !deferralReason.value" 
+                                        [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || defferalReasonControl.touched) && defferalReasonControl.invalid }"
+                                        [maxlength]="CommentAreaMaxlength" >
+                                        
+                                    <div class="invalid-feedback">
+                                        <div>Please enter the deferral reason.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-sm-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="firstName">Billed Total</label>
+                                    <input type="text" class="form-control" id="billedTotal" name="billedTotal" #billedTotalControl="ngModel"
+                                        [(ngModel)]="adjustmentDetailsDataData.billTotal" readonly>
+                                    </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- <div class="col-xs-12 col-xl-2 align-self-center readonly" >
+                        <span class="addmore__adjustments">
+                            <a href="javascript:void(0)" (click)="onMoreAdjustments()">
+                                <i class="far fa-plus-circle"></i> More Adjustments
+                            </a>
+                        </span>
+                    </div> -->
+                    <div class="col-12 mt-2">
+                            <accordion [closeOthers]="false" style="margin-top:5px;">
+                                <accordion-group *ngFor="let data of adjustmentFormData; let i = index;" #groupval
+                                    style="margin-top:5px;" [isOpen]="true">
+                                    <!-- <div accordion-heading style="width:100%;">
+                                        Adjustment No. {{i + 1}}
+                                        <span class="float-right">
+                                            <i class=" fal fa-chevron-down"
+                                                [ngClass]="{'fa-chevron-down': groupval?.isOpen, 'fa-chevron-up': !groupval?.isOpen}">
+                                            </i>
+                                            <i class=" fal fa-trash-alt ml-3" *ngIf="this.adjustmentFormData.length >1"
+                                                [hidden]="this.adjustmentFormData.length == 1 || i == 0"
+                                                >
+                                            </i>
+                                        </span>
+                                    </div> -->
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="upDownAmount">Write up/down amount</label>
+                                                <input 
+                                                    #amountInputType  
+                                                    type="number" 
+                                                    class="form-control hideArrow"
+                                                    id="upDownAmount" 
+                                                    name="upDownAmount_{{i}}" 
+                                                    #upDownAmountControl="ngModel" 
+                                                    [required]="!!(data.writeUpDownCategoryId || data.writeUpDownReason)"
+                                                    [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || upDownAmountControl.touched) && upDownAmountControl.invalid }"
+                                                    [(ngModel)]="data.writeUpDownAmount" 
+                                                    (keyup)="writeUpDownAmountChange($event, i)" 
+                                                    maxlength="50" />
+
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter the write up/down amount.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="upDownPercentage">Write up/down %</label>
+                                                <input 
+                                                    #percentageInputType 
+                                                    type="number" 
+                                                    class="form-control hideArrow"
+                                                    id="upDownPercentageControl" name="upDownPercentageControl_{{i}}"
+                                                    maxlength="50" 
+                                                    #upDownPercentageControl="ngModel"
+                                                    [required]="!!(data.writeUpDownCategoryId || data.writeUpDownReason)"
+                                                    [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || upDownPercentageControl.touched) && upDownPercentageControl.invalid }"
+                                                    (keyup)="writeUpDownPercentageChange($event, i)"
+                                                    [(ngModel)]="data.writeUpDownPercentage" 
+                                                    />
+
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter the write up/down %.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="upDownCategory">Write up/down category</label>
+                                                <global-category-dropdown
+                                                    *ngIf="dataLoaded"
+                                                    [val]="data.writeUpDownCategoryId" 
+                                                    [globalCodeId]="data.writeUpDownCategoryId"
+                                                    [requestBody]="WriteUpdownCategoryRequest" 
+                                                    placeholderText="Select category"
+                                                    (dropdownSelectedValue)="selectedWriteUpDownCategoryValue($event, i)"
+                                                    [disabled]="!hasWriteUpDown && !data.writeUpDownCategoryId"
+                                                    requiredMessage="Select at least one category."
+                                                    [hasRequired]="hasWriteUpDown"
+                                                    [submitted]="makeAdjustmentForm.submitted">
+                                                </global-category-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="upDownReason">Write up/down reason</label>
+                                                <input 
+                                                    #writeUpDownReason
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="upDownReason"
+                                                    name="upDownReason_{{i}}" 
+                                                    #upDownReasonControl="ngModel"
+                                                    [(ngModel)]="data.writeUpDownReason"
+                                                    [readonly]="!hasWriteUpDown && !data.writeUpDownReason"
+                                                    [required]="hasWriteUpDown"
+                                                    [ngClass]="{ 'is-invalid': (makeAdjustmentForm.submitted || upDownReasonControl.touched) && upDownReasonControl.invalid }"
+                                                    [maxlength]="CommentAreaMaxlength" />
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter write up/down reason.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label class="mb-0" for="newAdvanceBill">New advance bill</label>
+                                                <span class="input_overlay_text">(Positive amount only)</span>
+                                                <input 
+                                                    #newAdvanceBillInput 
+                                                    type="number" 
+                                                    class="form-control hideArrow"
+                                                    id="newAdvanceBill" 
+                                                    name="newAdvanceBill_{{i}}"
+                                                    [required]="!!(data.advancedBillCategory || data.advancedBillReason)"
+                                                    #newAdvanceBillControl="ngModel" 
+                                                    [(ngModel)]="data.newAdvancedBill"
+                                                    [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || newAdvanceBillControl.touched) && newAdvanceBillControl.invalid }"
+                                                    maxlength="50" />
+
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter new advance bill.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group"> 
+                                                <label for="advanceBillCategory">Advance bill category</label>
+                                                <global-category-dropdown 
+                                                    *ngIf="dataLoaded"
+                                                    [val]="data.advancedBillCategory" 
+                                                    [globalCodeId]="data.advancedBillCategory"
+                                                    [requestBody]="AdvanceBillCategoryRequest" 
+                                                    placeholderText="Select category" 
+                                                    (dropdownSelectedValue)="selectedAdvanceCategoryValue($event, i)"
+                                                    [disabled]="!hasNewAdvanceBill && !data.advancedBillCategory"
+                                                    [hasRequired]="hasNewAdvanceBill" 
+                                                    requiredMessage="Select at least one category."
+                                                    [submitted]="makeAdjustmentForm.submitted">
+                                                </global-category-dropdown>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="advanceBillReason">Advance bill reason</label>
+                                                <input 
+                                                    #advanceBillReason 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="advanceBillReason"
+                                                    name="advanceBillReason_{{i}}" 
+                                                    #advanceBillReasonControl="ngModel"
+                                                    [(ngModel)]="data.advancedBillReason" 
+                                                    [readonly]="!hasNewAdvanceBill && !data.advancedBillReason"
+                                                    [required]="hasNewAdvanceBill"
+                                                    [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || advanceBillReasonControl.touched) && advanceBillReasonControl.invalid }"
+                                                    [maxlength]="CommentAreaMaxlength" />
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter advanced bill reason. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label class="mb-0" for="advanceBill">Advance bill application</label>
+                                                <span class="input_overlay_text">(Negative amount only)</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="form-control hideArrow" 
+                                                    id="advanceBillApplication"
+                                                    name="advanceBillApplication_{{i}}"
+                                                    #advanceBillApplicationControl="ngModel"
+                                                    [(ngModel)]="data.advancedBillApplication"
+                                                    maxlength="50" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label class="mb-0" for="genralComission">General commissions application</label>
+                                                <span class="input_overlay_text">(Negative amount only)</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="form-control hideArrow" 
+                                                    id="generalCommission"
+                                                    name="generalCommission_{{i}}" 
+                                                    #generalCommissionControl="ngModel"
+                                                    [(ngModel)]="data.generalCommissionsApplication"
+                                                    maxlength="50"
+                                                    />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label class="mb-0" for="vbisComission">VBIS commissions application</label>
+                                                <span class="input_overlay_text">(Negative amount only)</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="form-control hideArrow" 
+                                                    id="vbisCommission"
+                                                    name="vbisCommission_{{i}}" 
+                                                    #vbisCommissionControl="ngModel"
+                                                    [(ngModel)]="data.vbisCommissionsApplication" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label class="mb-0" for="volumeChargeQuantity">Volume charge quantity</label>
+                                                <span class="input_overlay_text">(Positive amount only)</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="form-control hideArrow"
+                                                    id="volumeChargeQuantity" 
+                                                    name="volumeChargeQuantity_{{i}}"
+                                                    #volumeChargeQuantityControl="ngModel"
+                                                    [(ngModel)]="data.volumeChargeQuantity"
+                                                    [required]="!!data.volumeChargeRate"
+                                                    (keyup)="volumeFieldChange($event, i)"
+                                                    [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || volumeChargeQuantityControl.touched) && volumeChargeQuantityControl.invalid  }"
+                                                    maxlength="50" 
+                                                    />
+
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter volume charge quantity.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label class="mb-0" for="volumeChargeRate">Volume charge rate</label>
+                                                <span class="input_overlay_text">(Positive amount only)</span>
+                                                <input 
+                                                    type="number" 
+                                                    class="form-control hideArrow"
+                                                    id="volumeChargeRateControl" 
+                                                    name="volumeChargeRateControl_{{i}}"
+                                                    #volumeChargeRateControl="ngModel" 
+                                                    [(ngModel)]="data.volumeChargeRate" 
+                                                    [required]="!!data.volumeChargeQuantity"
+                                                    (keyup)="volumeFieldChange($event, i)"
+                                                    [ngClass]="{'is-invalid': (makeAdjustmentForm.submitted || volumeChargeRateControl.touched) && volumeChargeRateControl.invalid }"
+                                                    maxlength="50" />
+
+                                                <div class="invalid-feedback">
+                                                    <div>Please enter volume charge rate.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="volumeChargeTotal">Volume charge total</label>
+                                                <input 
+                                                    type="number" 
+                                                    class="form-control hideArrow" 
+                                                    id="volumeChargeTotal"
+                                                    name="volumeChargeTotal_{{i}}" 
+                                                    [value]="data.volumeChargeTotal"
+                                                    maxlength="50" 
+                                                    readonly />
+                                            </div>
+                                        </div>
+
+                                        <!-- Move this section to the top when there are more adjustment options -->
+
+                                        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3">
+                                            <div class="form-group">
+                                                <label for="firstName">Billed Total</label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="billedTotal" 
+                                                    name="billedTotal" 
+                                                    [value]="billedTotal" 
+                                                    readonly />
+                                            </div>
+                                        </div>
+
+                                        <!-- close top section fields -->
+
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="comments">Comments/notes</label>
+                                                <input 
+                                                    type="text" 
+                                                    class="form-control" 
+                                                    id="comments" 
+                                                    name="comments_{{i}}"
+                                                    row="6" 
+                                                    #commentsControl="ngModel" 
+                                                    [(ngModel)]="data.comments" 
+                                                    [maxlength]="CommentAreaMaxlength" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </accordion-group>
+                            </accordion>
+                            <div class="col-12 mt-3 btn__row">
+                                <button type="submit" class="btn btn__ui orange__gradient">Save</button>
+                                <!-- <span> 1: Advance Bills updated as of MM/DD/YYYY</span> -->
+                            </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

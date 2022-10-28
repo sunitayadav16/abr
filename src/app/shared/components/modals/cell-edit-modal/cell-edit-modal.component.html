@@ -1,0 +1,44 @@
+<base-modal [modalTitle]="inputLabel" (onClose)="close()">
+        <form #cellEditForm="ngForm">
+            <!-- Input -->
+            <div class="form-group mt-0" *ngIf="isTypeInputText || isTypeInputNumber"> 
+                <input [type]="isTypeInputNumber ? 'number' : 'text'" maxlength="50" class="form-control" id="textInput" name="cellDetail" #nameControl='ngModel' [(ngModel)]="value" [ngClass]="{ 'is-invalid': (!formIsValid || nameControl.touched) && (nameControl.invalid || isRequiredError) }" required>
+                <div *ngIf="(!formIsValid || nameControl.touched) && (nameControl.invalid || isRequiredError)" class="invalid-feedback">
+                    Field is required
+                </div>
+              </div>
+
+            <!-- Textarea -->
+            <div class="form-group mt-0" *ngIf="isTypeTextarea">
+                <textarea type="textarea" name="cellDetail" [(ngModel)]="value"></textarea>
+            </div>
+
+            <!-- Datepicker -->
+            <div class="form-group mt-0" *ngIf="isTypeInputDate">
+                  <input type="text"
+                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', showWeekNumbers:false }"
+                    #dp="bsDatepicker"
+                    [maxDate]="maxDate"
+                    readonly
+                    bsDatepicker
+                    [isOpen]="true"
+                    name="date" #dateControl='ngModel'
+                    [(ngModel)]="selectedDate" [ngClass]="{ 'is-invalid': (!formIsValid || dateControl.touched) && dateControl.invalid }" required>
+                    <div *ngIf="!formIsValid && (dateControl.touched || dateControl.invalid)" class="invalid-feedback">
+                        Date is required
+                    </div>
+            </div>
+
+            <!-- Dropdown -->
+            <div class="form-group mt-0" *ngIf="isTypeDropdown">
+                <category-dropdown className="form-control" [val]="valueId" placeholderText="Select user" [requestBody]="hasRequestBody" (dropdownSelectedValue)="getDropdownValue($event)"></category-dropdown>
+                <span *ngIf="!formIsValid" class="d-block invalid-feedback">Please select user</span>
+            </div>
+
+            <div class="modal-footer pl-0 pr-0 pt-3">
+                <button type="submit" class="btn btn__ui button__black mr-1" (click)="submit()">Submit</button>
+                <button type="button" class="btn btn__ui button__white" (click)="close()">Cancel</button>
+            </div>
+        </form>
+            
+</base-modal>

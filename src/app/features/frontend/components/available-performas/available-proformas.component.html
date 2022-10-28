@@ -1,0 +1,119 @@
+<div class="proforma__detail available__proforma" *ngIf="rowFilterData" >
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            <h1 class="col__tabletitle blue__gradient">Available Proformas</h1>
+        </div>
+        <div class="col-xs-12 col-md-5 text-right">
+          <a *ngIf="proformaBatchDate" href="javascript:void(0)">Proforma list of <span class="bold__text">{{proformaBatchDate | date: 'MMMM yyyy'}}</span> <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="note__section">
+                <img src="assets/images/check-list-icon.png" width="36" height="36" class="mr-3" /><span
+                    class="align-middle">Below is a list of available proformas.</span>
+                
+                <a [href]="originalABRLink" target="_blank" class ="originalAbr">Original ABR </a>    
+            </div>
+        </div>
+    </div>
+    <div class="table__wrapper">
+        <div class="row">
+            <div class="col-12">                    
+                <div class="row align-items-center filter__row filter__row__title">
+                    <div class="col-6">
+                        <h2>
+                            <span *ngIf="!appliedFilter">Available Proformas</span>
+                            <span *ngIf="appliedFilter">{{availableProformaListData.length}} records founds</span>
+                        </h2>
+                        <span>Hover over any row to expand view/access form</span>
+                    </div>
+                    <div class="col-xs-12 col-lg-6 text-right">
+                        <p>
+                            <show-hide-grid-columns *ngIf="hasColumnFilterPermission" (hide)="hideDropdown($event)" [show]="showHideDropdown" class="mr-2" [grid]="grid" [columnsList]="additionalColumnsList">
+                            </show-hide-grid-columns>
+                            
+                            <span class="clear__filterBtn" [class.show]="appliedFilter" (click)="removeFilter()">Clear all <span class="applied__filter__dot"></span></span>
+                            
+                            <a *ngIf="loading && hasRowFilterPermission" href="javascript:void(0);" data-toggle="modal" data-target="#filterFieldModal"
+                                class="fa__filter ml-2">
+                                <global-row-filter (hide)="hideDropdown($event)" [show]="ShowRowFilter" [filterNames]="rowFilteraNames" [appliedFilters]="appliedRowFilter" [data]="rowFilterData" (filteredRowData)="rowFilter($event)"></global-row-filter>
+                                <span class="custom__tooltip">Filter<span></span></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <common-grid [grid]="grid" [columnsList]="columnsList" orderBy="proformaNo" [hideGridSearch]="true"
+                            (changeTable)="filterProformaList($event)" tableBodyClass="proforma__rows">
+                            <tr [class.goto__proforma]="show"
+                                *ngFor="let data of availableProformaListData ; let i = index">
+                                <td *ngFor="let column of columnsList" [hidden]="hideAdditionalColumn(column)"
+                                (mouseover)="mouseHover($event, column)" [ngClass]="column.ColumnName == 'proformaStatus' ? getStatusClass(data.proformaStatus) : ''">
+                            
+
+                                    <span *ngIf="column.ColumnName == 'proformaStatus'">
+                                        <button type="button" class="btn pop__tooltip"
+                                            tooltip="{{data.additionalNotes}}" triggers="hover" placement="right">
+                                            <span>{{data.proformaStatus}}</span>
+                                        </button>
+                                    </span>
+                                   
+                                    <span *ngIf="checkColumnName(column.ColumnName)" [ngClass] ="column.CellClass ? 'float-right' : '' " >
+                                        {{column.FormatValue ? column.FormatValue(data[column.ColumnName], data) :
+                                         data[column.ColumnName]}}
+                                    </span>
+
+                                    <span *ngIf="column.ColumnName == 'proformaTotal'" [ngClass]="column.CellClass ?? 'float-right'">
+                                        {{data[column.ColumnName]?.proformaTotal | amount : data?.currency}}
+                                    </span>
+
+                                    <span *ngIf="column.ColumnName == 'projects'" >
+                                        <span class="content__ellipsis"
+                                            *ngIf="data.projects?.length > 0">{{data.projects[0].projectName}}</span>
+                                        <button  *ngIf="data.projects?.length > 1"
+                                            (click)="toogleBtn(i)" containerClass="show__projects"
+                                            class="btn btn__popover"
+                                            [class.close__popover]="!hideRowHover && (i == currentIndex)"
+                                            [disabled]="!hideRowHover && !(i == currentIndex)" [tooltip]="template"
+                                            triggers="click" placement="left">
+                                            <span class="project__count">{{data.projects?.length}}</span>
+                                            <span class="custom__tooltip" [hidden]="!hideRowHover && !(i == currentIndex)">Click to see more projects<span></span></span>
+                                        </button>
+
+                                        <ng-template #template>
+                                            <ul>
+                                                <li *ngFor ="let project of data.projects">
+                                                    {{project.projectName}}
+                                                </li>
+                                            </ul>
+                                        </ng-template>
+                                        
+                                    </span>
+                                    <span *ngIf="column.ColumnName == 'proformaManagers.projectManager' || column.ColumnName == 'proformaManagers.billingManager'">
+                                        {{data | objectPropertyByKey: column.ColumnName}}
+                                    </span>
+                                    
+                                    <span *ngIf="data.projects?.length > 0 && column.ColumnName == 'availableAdvanceBills'" [ngClass] ="column.CellClass ?? 'float-right' ">{{column.FormatValue ? column.FormatValue(data.projects[0].availableAdvanceBills, data) : data.projects[0].availableAdvanceBills}}</span>
+                                </td>
+                                <td routerLink="/home/proforma-details/{{data.proformaId}}" (mouseleave)="show = false" class="d-none" [class.hovered__element]="show">
+                                    <div class="sticky__pos">
+                                        <i class="far fa-external-link-alt"></i>
+                                        <a href="javascript:void(0)" class="linkto__proforma">Go to proforma</a>
+                                    </div>
+                                </td> 
+                            </tr>   
+                        </common-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="rowFilterData==null && !loading" class="proforma__detail available__proforma">      
+    <div class="table__wrapper notificationMessage">
+        Please activate atleast one proforma batch.
+    </div>
+</div>  

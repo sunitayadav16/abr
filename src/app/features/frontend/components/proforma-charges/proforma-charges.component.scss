@@ -1,0 +1,26 @@
+@import '../../../../../assets/scss/variables.scss';
+
+.proforma__charges {
+    tr {
+        td {
+            &:first-child {
+                text-align: center;
+            }
+        }
+    }
+    .btn__row {
+        text-align: center;
+        button {
+            float: left;
+        }
+        span {
+            padding-right: 22px;
+            color: $text-grey;
+            font-size: $font-size-14;
+        }
+    }
+}
+
+.link__backward{
+    cursor: pointer;
+}

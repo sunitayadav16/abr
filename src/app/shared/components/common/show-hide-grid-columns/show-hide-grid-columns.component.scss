@@ -1,0 +1,14 @@
+.form-check-input {
+    margin-top: -0.3rem !important;
+}
+.btn{
+    &:focus {
+        outline: 0;
+        box-shadow: none !important;
+    }
+}
+ul{
+    overflow-x: hidden;
+    max-height: 335px;
+    max-width: 240px;
+}

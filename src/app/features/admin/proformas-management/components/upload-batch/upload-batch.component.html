@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 col__selectmonth">
+    <div class="row">
+      <div class="col-auto col__title">{{selectMonthView ? 'Select Month' : 'Upload'}}</div>
+      <div class="w-100"></div>
+      <div class="col-auto col__form" *ngIf="selectMonthView">
+        <div class="text-right move__next skip__link" routerLink="/admin/proforma-management">
+          <a href="javascript:void(0)">Back</a>
+        </div>
+        <div>
+          <p class="bold__text">Welcome {{userName}},</p>
+          <p>Please choose the month for uploading the proforma list.</p>
+        </div>
+        <form class="form-inline abr__form" action="/action_page.php">
+          <div class="form-group">
+            <input [(ngModel)]="batchDate" autocomplete="off" [maxDate]="maxDate" class="custom-select form__dropdown form-control pl-2"
+              name="date" bsDatepicker [bsConfig]="{dateInputFormat: 'MMMM YYYY'}"
+              (onShown)="selectproformaDate($event)" onkeydown="return false">
+          </div>
+          <button type="submit" class="btn btn__ui button__black" (click)="showUploadView()">Submit</button>
+        </form>
+      </div>
+
+      <div class="col-auto col__form" *ngIf="uploadView">
+        <div class="text-right move__next skip__link" (click)="goBack()">
+          <a href="javascript:void(0)">Back</a>
+        </div>
+        <div class="fileupload__wrap">
+          <p class="mb-3">Please upload the proforma list for <span class="bold__text">{{batchDate | date: 'MMMM yyyy'}}</span> along with the list of <span class="bold__text">T2 hours</span></p>
+          <p class="bold__text">Upload</p>
+          <form class="form-inline abr__form">
+            <div class="row">
+              <div class="col-auto pr-0 mr-4">
+                <div class="form-group uploadproforma">
+                  <label for="performUpload" class="custom__fileinput mr-0" [ngClass]="performaUploadInput.value ? 'upload__gradpink' : 'light__grey' ">Proforma List <i class="fal fa-file-upload"></i></label>
+                  <input #performUpload id="performUpload" type="file" class="pdfInputFile" title="" #performaUploadInput (change)="onFileSelection($event, true)">
+                </div>
+              </div>
+              <div class="col-auto pl-0">
+                <div class="form-group uploadproforma float-right">
+                  <label for="t2HourUpload" class="custom__fileinput mr-0 " [ngClass]="t2HourUploadInput.value ? 'upload__gradpink' : 'light__grey' " >T2 Hours <i class="fal fa-file-upload"></i></label>
+                  <input #t2HourUpload id="t2HourUpload" type="file" class="pdfInputFile" title="" #t2HourUploadInput (change)="onFileSelection($event, false)" />
+                </div>
+              </div>
+              <!-- <div class="col-12 alert__box">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <span class="bold__text">Successfully uploaded</span> Proforma list for May 2021
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="far fa-times"></i></span>
+                  </button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <span class="bold__text">T2 Hours</span> list not uploaded
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><i class="far fa-times"></i></span>
+                  </button>
+                </div>
+              </div> -->
+              <div class="w-100"></div>
+              <!-- <div class="col-6">
+                    <div class="form-group">                       
+                      <input type="file" id="uploadfile" hidden/>
+                      <label for="upload" class="custom__fileinput upload__gradblack">Upload T2 Hours <i class="fal fa-file-upload"></i></label>
+                    </div>
+                  </div> -->
+              <!-- <div class="col-12">
+                <div class="text-right move__next next__link mt-2">
+                  <a href="javascript:void(0)" (click)="submit()">Continue <i class="fal fa-long-arrow-right"></i></a>
+                </div>
+              </div> -->
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn btn-default btn__ui button__black" (click)="submit()">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

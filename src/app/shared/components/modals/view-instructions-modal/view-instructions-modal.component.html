@@ -1,0 +1,5 @@
+<base-modal modalTitle="Instructions" (onClose)="close(true)">
+    <div class="section">
+        <div class="notes" [innerHTML]="notes | urlify"></div>
+    </div>
+</base-modal>

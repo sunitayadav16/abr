@@ -1,0 +1,11 @@
+@import '../../../../../../assets/scss/variables.scss';
+  .progress, .progress-bar {
+      height: 5px;
+  }
+  .progress {
+      margin-left: 30px;
+      clear: both;
+  }
+  .progress-bar {
+      background: $blue-gradient;
+  }

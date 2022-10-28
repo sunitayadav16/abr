@@ -1,0 +1,89 @@
+.table>thead:first-child>tr:first-child>th { position: relative;}
+.table .sortable{cursor:pointer;}
+
+.table .sortable:hover:before,.table .sortable:hover:after, .table .sortable.sort_asc:before, .table .sortable.sort_desc:after {opacity:1;}
+
+.table .sortable:before {
+    content: "";
+    border-width: 0 4px 4px;
+    visibility: visible;
+    right: 10px;
+    position: absolute;
+    opacity: .3;
+    margin-top: -3px;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+.table .sortable:after {
+    content: "";
+    border-width: 0 4px 4px;
+    visibility: visible;
+    right: 10px;
+    position: absolute;
+    opacity: .3;
+    margin-top: 6px;
+    font: normal normal normal 14px/1 FontAwesome;
+}
+
+.form__dropdown {
+    width: 90px !important;
+    background-position: 86% center;
+}
+.roleHeadingAlignment {
+    tr {
+        th {
+            &:first-child {
+                span{
+                    text-align: left;  
+                }
+            }
+            span{
+                display: block;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@mixin hoveredElement {
+    background: rgba(240,239,239,.9);
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    pointer-events: none;
+    padding: 0;
+    .sticky__pos{
+        pointer-events: visible;
+    }
+}
+::ng-deep{
+    .common__table{
+        &.table{
+            tbody{
+                tr{
+                    position: relative;
+                    &:hover{
+                        td {
+                            &.hovered__element{
+                               @include hoveredElement();
+                            }
+                        }                
+                    }
+
+                    td {
+                        &.hovered__element {
+                            &:hover {
+                                @include hoveredElement();
+                            }
+                         }
+                    }
+                }
+            }
+        }
+    }
+        
+}

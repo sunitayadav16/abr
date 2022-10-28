@@ -1,0 +1,37 @@
+<div class="proforma__detail">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+            <h1 class="col__tabletitle">User Management</h1>
+        </div>
+        <div class="col-4 text-right">
+              <button type="button" class="btn btn__ui button__black btn__link" (click)="createUser()">Create user</button>
+        </div>
+    </div>
+    <div class="table__wrapper">
+        <div class="row">
+            <div class="col-12">
+                <common-grid [columnsList]="columnsList" orderBy="firstName" (changeTable)="filterGrid($event)">
+                    <tr *ngFor="let user of usersList">
+                        <td>{{user.employeeId}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.primaryRole}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox" (click)="changeStatus(user.userId, user.isActive)" [checked]="user.isActive">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                        <td align="center" isPermissionGranted="proxyAssignmentPermission">
+                            <a href="javascript:void(0)" (click)="openMimicUserPopup(user.userId)" class="select__proxy">Select Proxy</a>
+                        </td>
+                        <td align="center">
+                            <i title="Edit" (click)="editUser(user)" class="far fa-user-edit mr-3 fa-lg"></i>
+                            <i title="Delete" (click)="openDeleteUserConfirmationPopup(user)" class="fal fa-trash-alt fa-lg"></i>
+                        </td>
+                    </tr>
+                </common-grid>
+            </div>
+        </div>
+    </div>
+</div>

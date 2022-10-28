@@ -1,0 +1,13 @@
+<ul class="d-none custom__scroll" [class.show]="show">
+    <li>
+      <input type="text" [(ngModel)]="search" class="form-control" placeholder="Search" (input)="filterItem()">
+    </li>
+    <li *ngFor="let value of filteredValue">
+      <a class="dropdown-item d-flex" href="javascript:void(0)">
+        <div class="custom-control custom-checkbox">
+          <input #checkbox type="checkbox" [checked]="checkIfFilterIsSelected(key, value.id )" (click)="selectValue(value.name, value.id, checkbox.checked)" class="custom-control-input" [id]="id + value.id + key + value.name">
+          <label class="custom-control-label" [for]="id + value.id + key + value.name">{{value.name}}</label>
+        </div>
+      </a>
+    </li>
+</ul>

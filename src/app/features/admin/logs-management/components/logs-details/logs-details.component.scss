@@ -1,0 +1,61 @@
+.notificationMessage{
+    font-size: 30px;
+    color: #bbb;
+    height: calc(100vh - 300px);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-select{
+    display: grid;
+    ::ng-deep{
+        input.form-control, input, textarea.form-control {
+            height: 30px !important;
+        }
+        .ng-clear-wrapper{
+            // display: none;
+            margin-top: 7px;
+        }
+    }
+}
+
+.searchClass{
+    position: absolute; 
+    top : 20px;
+    margin-left: -4px;
+    // &.d-content{
+    //     display: contents;
+    // }
+}
+
+.showMore{
+    text-decoration: underline;
+    color : blue;
+    cursor: pointer;
+}
+.select_wrapper{
+    flex-wrap: wrap;
+    position: absolute;
+    top: -21px;
+    width: 97%;
+    ng-select{
+       flex: 47%; 
+    }
+}
+
+.marginTop{
+    margin-top: 50px
+}
+
+.instructionsWrapper{
+    height: 46px;
+    .instructionsClass{
+        width : 229px;
+    }
+    
+}
+
+.highlight{
+    background-color: #e6f44e;
+}

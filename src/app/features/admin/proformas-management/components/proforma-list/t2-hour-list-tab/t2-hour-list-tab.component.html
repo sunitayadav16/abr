@@ -1,0 +1,29 @@
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="tab" role="tabpanel" aria-labelledby="T2hour-tab">
+        <div class="row align-items-center filter__row">
+            <div class="col-6"><h2 *ngIf="proformaBatchDate">T2 Hours {{proformaBatchDate | date: 'MMMM yyyy'}}</h2></div>
+            <div class="col-6 text-right">
+                <show-hide-grid-columns  
+                    *ngIf="hasColumnFilterPermission"
+                    [grid]="grid"
+                    
+                    [columnsList]="t2HoursAdditionalColumnsList"
+                    (hide)="hideDropdown($event)" [show]="showHideDropdown">
+                </show-hide-grid-columns> 
+                <!-- <i class="fal fa-filter fa__filter"></i> -->
+                <span class="clear__filterBtn ml-3" [class.show]="appliedFilter" (click)="removeFilter()">Clear all <span class="applied__filter__dot"></span></span>
+                <a *ngIf="loading && hasRowFilterPermission" href="javascript:void(0);" data-toggle="modal" data-target="#filterFieldModal"
+                    class="fa__filter ml-2">
+                    <global-row-filter (hide)="hideDropdown($event)" tabName="t2Hours" [show]="ShowRowFilter" [filterNames]="rowFilteraNames" [appliedFilters]="appliedRowFilter" [data]="rowFilterData" (filteredRowData)="rowFilter($event)"></global-row-filter>
+                    <span class="custom__tooltip">Filter<span></span></span> 
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 tab__tablelist">
+                <common-grid-alt [grid]="grid"  [hideGridSearch]="true" [columnsList]="t2HoursColumnsList" orderBy="clientRegion" (changeTable)="filterGrid($event)"></common-grid-alt>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">T2 Hours</div>
+</div>

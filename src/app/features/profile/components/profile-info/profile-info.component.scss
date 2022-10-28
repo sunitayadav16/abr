@@ -1,0 +1,13 @@
+.form__dropdown{
+    &.increaseRoleHeight {
+        height: 70px;
+        padding-top: 10px;
+    }
+}
+.set-primary-role{
+    ::ng-deep{
+        .ng-select-container{
+            height : 40px !important;
+        }
+    }
+}

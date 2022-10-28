@@ -1,0 +1,27 @@
+
+  <div class="proforma__detail proforma__collapse">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <h1 class="col__tabletitle">{{categoryName}}</h1>
+        </div>
+        <div class="col-xs-12 col-md-5 text-right">
+            <a routerLink="/admin/other-list-management/upload/{{categoryId}}"><i class="fal fa-file-upload"></i> Upload</a>
+        </div>
+    </div>
+    <form #form="ngForm">
+        <div class="table__wrapper proforma__charges">
+            <div class="row">
+                <div class="col-12">      
+                    <div class="row">
+                        <div class="col-12">
+                            <common-grid-alt 
+                            *ngIf="loading"
+                            [columnsList]="isCollectionContactList ? collectionContactColumnsList : columnsList"
+                            (changeTable)="filterGrid($event)"></common-grid-alt>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
